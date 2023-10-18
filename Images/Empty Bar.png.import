@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://es7p8ncbr6tc"
-path="res://.godot/imported/Empty Bar.png-321ac169f23d971cf84f4369164827fd.ctex"
+path="res://.godot/imported/Empty Bar.png-e7ec48ac4e9e11a77660b31f6379114c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Empty Bar.png"
-dest_files=["res://.godot/imported/Empty Bar.png-321ac169f23d971cf84f4369164827fd.ctex"]
+source_file="res://images/Empty Bar.png"
+dest_files=["res://.godot/imported/Empty Bar.png-e7ec48ac4e9e11a77660b31f6379114c.ctex"]
 
 [params]
 

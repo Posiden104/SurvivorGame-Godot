@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cusqk886pgeay"
-path="res://.godot/imported/engeniring_39_t.PNG-64b32632e2aca1fb55e4453aa0662925.ctex"
+path="res://.godot/imported/engeniring_39_t.PNG-c3734257e8417703d21d0787249da471.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Resources/ScrapImages/engeniring_39_t.PNG"
-dest_files=["res://.godot/imported/engeniring_39_t.PNG-64b32632e2aca1fb55e4453aa0662925.ctex"]
+source_file="res://images/Resources/ScrapImages/engeniring_39_t.PNG"
+dest_files=["res://.godot/imported/engeniring_39_t.PNG-c3734257e8417703d21d0787249da471.ctex"]
 
 [params]
 

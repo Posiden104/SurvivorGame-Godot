@@ -4,10 +4,10 @@ class_name  Player
 
 const SPEED = 300.0
 
-func _process(delta):
+func _process(_delta):
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed('Right'):
 		velocity.x += 1

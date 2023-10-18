@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://co4b3ayy6bk2f"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_qcfdw"]
-[ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://Images/Smile.png" id="2_2y3n7"]
+[ext_resource type="Script" path="res://scenes/entities/Player.gd" id="1_5et12"]
+[ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_c6ll2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxain"]
 radius = 30.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_qcfdw")
+script = ExtResource("1_5et12")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_2y3n7")
+texture = ExtResource("2_c6ll2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
