@@ -2,10 +2,7 @@ extends CharacterBody2D
 
 class_name  Player
 
-const SPEED = 300.0
-
-func _process(_delta):
-	pass
+var speed = 150.0
 
 func _physics_process(_delta):
 	velocity = Vector2.ZERO
@@ -18,6 +15,6 @@ func _physics_process(_delta):
 	if Input.is_action_pressed('Up'):
 		velocity.y -= 1
 		
-	velocity = velocity.normalized() * SPEED
+	velocity = velocity.normalized() * speed
 	
 	move_and_slide()
