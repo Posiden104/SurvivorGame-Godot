@@ -1,12 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=10 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
 [ext_resource type="Script" path="res://scenes/entities/player/gun.gd" id="3_temph"]
 [ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapons/projectiles/bullet.tscn" id="4_ct7t2"]
+[ext_resource type="Script" path="res://scenes/entities/player/sword.gd" id="5_sl622"]
+[ext_resource type="Texture2D" uid="uid://ci3bti074ghy6" path="res://images/Sword_Small.png" id="5_vkd2h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxain"]
 radius = 30.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_caktr"]
+height = 56.7273
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jq8fw"]
 radius = 70.0286
@@ -32,7 +37,158 @@ shape = SubResource("CircleShape2D_rxain")
 script = ExtResource("3_temph")
 bullet = ExtResource("4_ct7t2")
 
-[node name="Timer" type="Timer" parent="Weapons/Gun"]
+[node name="GunTimer" type="Timer" parent="Weapons/Gun"]
+unique_name_in_owner = true
+
+[node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swordImages")]
+unique_name_in_owner = true
+script = ExtResource("5_sl622")
+swordImages = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
+swordsActive = 8
+
+[node name="SwordTimer" type="Timer" parent="Weapons/Sword"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="SwordCooldown" type="Timer" parent="Weapons/Sword"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Sword1" type="Node2D" parent="Weapons/Sword"]
+visible = false
+
+[node name="SwordImage" type="Sprite2D" parent="Weapons/Sword/Sword1"]
+position = Vector2(0, -41)
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword1/SwordImage"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword1/SwordImage/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword2" type="Node2D" parent="Weapons/Sword"]
+visible = false
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword2"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword2/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword2/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword3" type="Node2D" parent="Weapons/Sword"]
+visible = false
+rotation = 1.5708
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword3"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword3/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword3/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword4" type="Node2D" parent="Weapons/Sword"]
+visible = false
+rotation = -1.5708
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword4"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword4/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword4/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword5" type="Node2D" parent="Weapons/Sword"]
+visible = false
+rotation = 0.785398
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword5"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword5/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword5/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword6" type="Node2D" parent="Weapons/Sword"]
+visible = false
+rotation = -0.785398
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword6"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword6/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword6/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword7" type="Node2D" parent="Weapons/Sword"]
+visible = false
+rotation = 2.35619
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword7"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword7/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword7/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
+
+[node name="Sword8" type="Node2D" parent="Weapons/Sword"]
+visible = false
+rotation = -2.35619
+
+[node name="SwordImage2" type="Sprite2D" parent="Weapons/Sword/Sword8"]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.634615, 0.634615)
+texture = ExtResource("5_vkd2h")
+
+[node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword8/SwordImage2"]
+metadata/_edit_lock_ = true
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword8/SwordImage2/SwordArea"]
+shape = SubResource("CapsuleShape2D_caktr")
+metadata/_edit_lock_ = true
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
@@ -40,5 +196,16 @@ collision_mask = 16
 
 [node name="Pickup Collider" type="CollisionShape2D" parent="Pickup Range"]
 shape = SubResource("CircleShape2D_jq8fw")
+metadata/_edit_lock_ = true
 
-[connection signal="timeout" from="Weapons/Gun/Timer" to="Weapons/Gun" method="_on_timer_timeout"]
+[connection signal="timeout" from="Weapons/Gun/GunTimer" to="Weapons/Gun" method="_on_timer_timeout"]
+[connection signal="timeout" from="Weapons/Sword/SwordTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
+[connection signal="timeout" from="Weapons/Sword/SwordCooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
+[connection signal="body_entered" from="Weapons/Sword/Sword1/SwordImage/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword2/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword3/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword4/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword5/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword6/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword7/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="Weapons/Sword/Sword8/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
