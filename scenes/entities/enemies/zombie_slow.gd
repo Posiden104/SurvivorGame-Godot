@@ -1,22 +1,22 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 var player
 
 var targetPos = null
-var speed = 2500
+var speed = 50
 var health = 1
 var maxHealth = 1
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	targetPos = player.get_position()
-	var velocity = targetPos - position
+	var v = targetPos - position
 	
-	velocity = velocity.normalized() * speed * delta
-
-	set_linear_velocity(velocity)
+	v = v.normalized() * speed
+	set_velocity(v)
+	move_and_slide()
 
 func _on_body_entered(body):
 	print("Something hit me")
