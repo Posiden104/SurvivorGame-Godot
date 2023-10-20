@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ogloqd2aef8e"]
+[gd_scene load_steps=7 format=3 uid="uid://ogloqd2aef8e"]
 
 [ext_resource type="Texture2D" uid="uid://jmmgalayjhp1" path="res://images/Background.jpg" id="1_sg7ai"]
 [ext_resource type="PackedScene" uid="uid://co4b3ayy6bk2f" path="res://scenes/entities/player/player.tscn" id="2_c3wqr"]
 [ext_resource type="Script" path="res://scenes/levels/EnemyContainer.gd" id="2_ww3i4"]
+[ext_resource type="Script" path="res://scenes/levels/ProjectileContainer.gd" id="3_7xxv6"]
 [ext_resource type="PackedScene" uid="uid://civf2v7v2gn7c" path="res://scenes/entities/enemies/zombie_slow.tscn" id="3_nea1x"]
 [ext_resource type="PackedScene" uid="uid://d2nh73ws0tria" path="res://scenes/spawners/spawner.tscn" id="5_iu03c"]
 
@@ -24,6 +25,7 @@ unique_name_in_owner = true
 script = ExtResource("2_ww3i4")
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
+script = ExtResource("3_7xxv6")
 
 [node name="Player" parent="." instance=ExtResource("2_c3wqr")]
 position = Vector2(574, 325)
@@ -39,5 +41,6 @@ autostart = true
 position = Vector2(307, 186)
 autostart = true
 
+[connection signal="shoot_gun" from="Player" to="ProjectileContainer" method="_on_player_shoot_gun"]
 [connection signal="spawn" from="Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
 [connection signal="spawn" from="Spawner2" to="EnemyContainer" method="_on_spawner_spawn"]

@@ -9,6 +9,8 @@
 radius = 30.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 27
+motion_mode = 1
 script = ExtResource("1_emybq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -24,11 +24,6 @@ func startTimer():
 	$SpawnTimer.wait_time = randf_range(min_spawn_time, max_spawn_time)
 	$SpawnTimer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_spawn_timer_timeout():
 	spawn.emit(spawnner_scene, global_position)
 	startTimer()

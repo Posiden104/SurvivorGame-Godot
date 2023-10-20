@@ -18,10 +18,7 @@ func _physics_process(_delta):
 	set_velocity(v)
 	move_and_slide()
 
-func _on_body_entered(body):
-	print("Something hit me")
-	
-func damage(damage):
-	health -= damage
+func damage(dmg):
+	health -= dmg
 	if health <= 0:
 		queue_free()

@@ -9,6 +9,4 @@ func _ready():
 
 
 func _on_timer_timeout():
-	var b = bullet.instantiate()
-	get_node("/root/Game/ProjectileContainer").add_child(b)
-	b.global_position = global_position
+	$"../..".shootGun(bullet, global_position)
