@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhh7w6rc5mr6q"]
+[gd_scene load_steps=27 format=3 uid="uid://dhh7w6rc5mr6q"]
 
 [ext_resource type="Script" path="res://scenes/pickups/scrap.gd" id="1_87dv8"]
 [ext_resource type="Texture2D" uid="uid://c1qmx6subremc" path="res://images/Resources/ScrapImages/engeniring_03_t.PNG" id="2_c1ii6"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dj50b267lo8ik" path="res://images/Resources/ScrapImages/en_craft_74.png" id="22_viivh"]
 [ext_resource type="Texture2D" uid="uid://cty24148i7uyq" path="res://images/Resources/ScrapImages/en_craft_81.png" id="23_nsbph"]
 [ext_resource type="Texture2D" uid="uid://b3odq6jhv51im" path="res://images/Resources/ScrapImages/en_craft_94.PNG" id="24_ak1ho"]
+[ext_resource type="Script" path="res://scenes/pickups/ScrapArea.gd" id="25_vyk45"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7oybt"]
 radius = 113.192
@@ -32,9 +33,10 @@ radius = 113.192
 script = ExtResource("1_87dv8")
 scrap_images = Array[CompressedTexture2D]([ExtResource("2_c1ii6"), ExtResource("3_hit0x"), ExtResource("4_k0uq6"), ExtResource("5_f66rg"), ExtResource("6_1gv3u"), ExtResource("7_nx3rt"), ExtResource("8_swk5k"), ExtResource("9_88abd"), ExtResource("10_4q7hi"), ExtResource("11_jsohc"), ExtResource("12_racj6"), ExtResource("13_lhulf"), ExtResource("14_dfhn5"), ExtResource("15_k8oaw"), ExtResource("16_nmj8s"), ExtResource("17_x2ot4"), ExtResource("18_gi4eh"), ExtResource("19_j73tn"), ExtResource("20_tgn15"), ExtResource("21_5rlmj"), ExtResource("22_viivh"), ExtResource("23_nsbph"), ExtResource("24_ak1ho")])
 
-[node name="ScrapArea" type="Area2D" parent="." groups=["pickups"]]
+[node name="ScrapArea" type="Area2D" parent="."]
 scale = Vector2(0.16, 0.16)
 collision_layer = 16
+script = ExtResource("25_vyk45")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScrapArea"]
 shape = SubResource("CircleShape2D_7oybt")
@@ -43,5 +45,7 @@ shape = SubResource("CircleShape2D_7oybt")
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("2_c1ii6")
 
-[connection signal="area_entered" from="ScrapArea" to="." method="_on_scrap_area_area_entered"]
-[connection signal="body_entered" from="ScrapArea" to="." method="_on_scrap_area_body_entered"]
+[connection signal="area_entered" from="ScrapArea" to="ScrapArea" method="_on_area_entered"]
+[connection signal="body_entered" from="ScrapArea" to="ScrapArea" method="_on_body_entered"]
+[connection signal="magnetize" from="ScrapArea" to="." method="_on_scrap_area_magnetize"]
+[connection signal="pickup" from="ScrapArea" to="." method="_on_scrap_area_pickup"]

@@ -16,3 +16,9 @@ func shootGun(bulletScene: PackedScene):
 
 func increaseScrap():
 	scrap_amount += 1
+	
+func pickupMagnet():
+	var pickups = get_tree().get_nodes_in_group("pickups") as Array[magnetic_base]
+	for p in pickups:
+		p.fly_speed *= 2
+		p.magnetize()
