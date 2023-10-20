@@ -3,12 +3,13 @@ extends CharacterBody2D
 var player
 
 var targetPos = null
-var speed = 50
-var health = 1
-var maxHealth = 1
+@export var speed:float = 50
+@export var maxHealth:float = 1
+var health:float
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
+	health = maxHealth
 
 func _physics_process(_delta):
 	targetPos = player.get_position()
@@ -18,7 +19,7 @@ func _physics_process(_delta):
 	set_velocity(v)
 	move_and_slide()
 
-func damage(dmg):
+func damage(dmg:float):
 	health -= dmg
 	if health <= 0:
 		queue_free()

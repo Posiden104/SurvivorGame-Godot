@@ -1,7 +1,8 @@
 extends Marker2D
 
-enum enemyType {slow_zombie}
+enum enemyType {slow_zombie, fast_zombie}
 var slow_zombie_scene: PackedScene = preload("res://scenes/entities/enemies/zombie_slow.tscn")
+var fast_zombie_scene: PackedScene = preload("res://scenes/entities/enemies/zombie_fast.tscn")
 
 
 @export var enemy_type_to_spawn: enemyType
@@ -17,6 +18,8 @@ func _ready():
 	match enemy_type_to_spawn:
 		enemyType.slow_zombie:
 			spawnner_scene = slow_zombie_scene
+		enemyType.fast_zombie:
+			spawnner_scene = fast_zombie_scene
 	if autostart:
 		startTimer()
 

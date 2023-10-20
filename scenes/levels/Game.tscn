@@ -39,6 +39,9 @@ autostart = true
 
 [node name="Spawner2" parent="." instance=ExtResource("5_iu03c")]
 position = Vector2(307, 186)
+enemy_type_to_spawn = 1
+min_spawn_time = 3.0
+max_spawn_time = 4.345
 autostart = true
 
 [connection signal="shoot_gun" from="Player" to="ProjectileContainer" method="_on_player_shoot_gun"]
