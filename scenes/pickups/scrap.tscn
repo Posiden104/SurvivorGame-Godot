@@ -1,0 +1,47 @@
+[gd_scene load_steps=26 format=3 uid="uid://dhh7w6rc5mr6q"]
+
+[ext_resource type="Script" path="res://scenes/pickups/scrap.gd" id="1_87dv8"]
+[ext_resource type="Texture2D" uid="uid://c1qmx6subremc" path="res://images/Resources/ScrapImages/engeniring_03_t.PNG" id="2_c1ii6"]
+[ext_resource type="Texture2D" uid="uid://djqmig74qjuc8" path="res://images/Resources/ScrapImages/engeniring_04_t.png" id="3_hit0x"]
+[ext_resource type="Texture2D" uid="uid://bah5mdc3dbgmc" path="res://images/Resources/ScrapImages/engeniring_10_t.PNG" id="4_k0uq6"]
+[ext_resource type="Texture2D" uid="uid://qpv1jpxd7udx" path="res://images/Resources/ScrapImages/engeniring_35_t.PNG" id="5_f66rg"]
+[ext_resource type="Texture2D" uid="uid://cusqk886pgeay" path="res://images/Resources/ScrapImages/engeniring_39_t.PNG" id="6_1gv3u"]
+[ext_resource type="Texture2D" uid="uid://xcn0o1vtr8v0" path="res://images/Resources/ScrapImages/engeniring_40_t.PNG" id="7_nx3rt"]
+[ext_resource type="Texture2D" uid="uid://bs2p7qjvd3poi" path="res://images/Resources/ScrapImages/engeniring_43_t.png" id="8_swk5k"]
+[ext_resource type="Texture2D" uid="uid://blrk23axsaecy" path="res://images/Resources/ScrapImages/engeniring_53_t.png" id="9_88abd"]
+[ext_resource type="Texture2D" uid="uid://brhnxv6a2p17u" path="res://images/Resources/ScrapImages/engeniring_54_t.PNG" id="10_4q7hi"]
+[ext_resource type="Texture2D" uid="uid://blcthvgr0fnbi" path="res://images/Resources/ScrapImages/engeniring_55_t.PNG" id="11_jsohc"]
+[ext_resource type="Texture2D" uid="uid://b8c00fahe0p71" path="res://images/Resources/ScrapImages/engeniring_58_t.png" id="12_racj6"]
+[ext_resource type="Texture2D" uid="uid://du0cyorbu1f1d" path="res://images/Resources/ScrapImages/en_craft_5.png" id="13_lhulf"]
+[ext_resource type="Texture2D" uid="uid://bebky2u5ybse3" path="res://images/Resources/ScrapImages/en_craft_7.png" id="14_dfhn5"]
+[ext_resource type="Texture2D" uid="uid://d14tktwxgo0px" path="res://images/Resources/ScrapImages/en_craft_16.png" id="15_k8oaw"]
+[ext_resource type="Texture2D" uid="uid://cnhwbrj2y2nt6" path="res://images/Resources/ScrapImages/en_craft_28.png" id="16_nmj8s"]
+[ext_resource type="Texture2D" uid="uid://byhlqf5nvppy8" path="res://images/Resources/ScrapImages/en_craft_35.png" id="17_x2ot4"]
+[ext_resource type="Texture2D" uid="uid://cxl8u123uiptw" path="res://images/Resources/ScrapImages/en_craft_37.png" id="18_gi4eh"]
+[ext_resource type="Texture2D" uid="uid://co4ffgqv10ta4" path="res://images/Resources/ScrapImages/en_craft_40.png" id="19_j73tn"]
+[ext_resource type="Texture2D" uid="uid://h1u6u6nms0h" path="res://images/Resources/ScrapImages/en_craft_70.png" id="20_tgn15"]
+[ext_resource type="Texture2D" uid="uid://da1hlgqg6ulae" path="res://images/Resources/ScrapImages/en_craft_72.png" id="21_5rlmj"]
+[ext_resource type="Texture2D" uid="uid://dj50b267lo8ik" path="res://images/Resources/ScrapImages/en_craft_74.png" id="22_viivh"]
+[ext_resource type="Texture2D" uid="uid://cty24148i7uyq" path="res://images/Resources/ScrapImages/en_craft_81.png" id="23_nsbph"]
+[ext_resource type="Texture2D" uid="uid://b3odq6jhv51im" path="res://images/Resources/ScrapImages/en_craft_94.PNG" id="24_ak1ho"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7oybt"]
+radius = 113.192
+
+[node name="Scrap" type="Node2D" groups=["pickups"]]
+script = ExtResource("1_87dv8")
+scrap_images = Array[CompressedTexture2D]([ExtResource("2_c1ii6"), ExtResource("3_hit0x"), ExtResource("4_k0uq6"), ExtResource("5_f66rg"), ExtResource("6_1gv3u"), ExtResource("7_nx3rt"), ExtResource("8_swk5k"), ExtResource("9_88abd"), ExtResource("10_4q7hi"), ExtResource("11_jsohc"), ExtResource("12_racj6"), ExtResource("13_lhulf"), ExtResource("14_dfhn5"), ExtResource("15_k8oaw"), ExtResource("16_nmj8s"), ExtResource("17_x2ot4"), ExtResource("18_gi4eh"), ExtResource("19_j73tn"), ExtResource("20_tgn15"), ExtResource("21_5rlmj"), ExtResource("22_viivh"), ExtResource("23_nsbph"), ExtResource("24_ak1ho")])
+
+[node name="ScrapArea" type="Area2D" parent="." groups=["pickups"]]
+scale = Vector2(0.16, 0.16)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScrapArea"]
+shape = SubResource("CircleShape2D_7oybt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_c1ii6")
+
+[connection signal="area_entered" from="ScrapArea" to="." method="_on_scrap_area_area_entered"]
+[connection signal="body_entered" from="ScrapArea" to="." method="_on_scrap_area_body_entered"]

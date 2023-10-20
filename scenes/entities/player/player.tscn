@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=7 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxain"]
 radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jq8fw"]
+radius = 70.0286
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 27
@@ -17,7 +20,7 @@ script = ExtResource("1_emybq")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_yk4p3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Player Collider" type="CollisionShape2D" parent="." groups=["player"]]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_rxain")
 
@@ -30,5 +33,12 @@ script = ExtResource("3_temph")
 bullet = ExtResource("4_ct7t2")
 
 [node name="Timer" type="Timer" parent="Weapons/Gun"]
+
+[node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
+unique_name_in_owner = true
+collision_mask = 16
+
+[node name="Pickup Collider" type="CollisionShape2D" parent="Pickup Range"]
+shape = SubResource("CircleShape2D_jq8fw")
 
 [connection signal="timeout" from="Weapons/Gun/Timer" to="Weapons/Gun" method="_on_timer_timeout"]

@@ -9,4 +9,4 @@ func _ready():
 
 
 func _on_timer_timeout():
-	$"../..".shootGun(bullet, global_position)
+	$"../..".shootGun(bullet)
