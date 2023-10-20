@@ -1,9 +1,12 @@
 extends Node2D
 
+class_name bullet
+
 @export var speed:int = 250
 var damage = 1
 var hitLimit:int = 1
 var bulletLife:float = 10.0
+var dir = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x += speed * delta
+	position += dir.normalized() * speed * delta
 
 func hitBody():
 	hitLimit -= 1

@@ -55,16 +55,13 @@ position = Vector2(511, 529)
 position = Vector2(343, 409)
 
 [node name="Scrap5" parent="." instance=ExtResource("6_wf251")]
-position = Vector2(530, 437)
+position = Vector2(427, 478)
 
 [node name="Scrap6" parent="." instance=ExtResource("6_wf251")]
 position = Vector2(353, 544)
 
 [node name="Magnet" parent="." instance=ExtResource("7_658te")]
 position = Vector2(806, 472)
-
-[node name="Magnet2" parent="." instance=ExtResource("7_658te")]
-position = Vector2(1029, 296)
 
 [connection signal="shoot_gun" from="Player" to="ProjectileContainer" method="_on_player_shoot_gun"]
 [connection signal="spawn" from="Spawner" to="EnemyContainer" method="_on_spawner_spawn"]

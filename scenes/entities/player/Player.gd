@@ -2,17 +2,20 @@ extends CharacterBody2D
 
 class_name  Player
 
-signal shoot_gun(bulletScene: PackedScene, global_position: Vector2)
+signal shoot_gun(bulletScene: PackedScene, global_position: Vector2, dir: Vector2)
 
 var speed = 100.0
 @export var scrap_amount: int
+var dir: Vector2 = Vector2.RIGHT
 
 func _physics_process(_delta):
 	set_velocity(Input.get_vector("Left", "Right", "Up", "Down").normalized() * speed)
+	if velocity.length() > 0:
+		dir = velocity
 	move_and_slide()
 
 func shootGun(bulletScene: PackedScene):
-	shoot_gun.emit(bulletScene, global_position)
+	shoot_gun.emit(bulletScene, global_position, dir)
 
 func increaseScrap():
 	scrap_amount += 1
