@@ -1,11 +1,10 @@
-extends weapon_base
+extends active_weapon_base
 
 #degrees per second
 @export var speed: float = 360
 
 @export var swords: Array[Node2D]
 @export var swordsActive: int = 2
-#var isActive: bool = false
 
 func enable():
 	isActive = true
@@ -33,8 +32,7 @@ func _on_sword_cooldown_timeout():
 
 func _process(delta):
 	if isActive:
-		$Sword.rotate(deg_to_rad(speed) * delta)
-
+		rotate(deg_to_rad(speed) * delta)
 
 func _on_sword_area_body_entered(body):
 	if body.is_in_group("enemies") and body.has_method("damage"):

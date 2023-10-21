@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=13 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
 [ext_resource type="Script" path="res://scenes/entities/player/Gun.gd" id="3_fqq77"]
 [ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapons/projectiles/bullet.tscn" id="4_ct7t2"]
 [ext_resource type="Script" path="res://scenes/entities/player/Sword.gd" id="5_0mp1t"]
+[ext_resource type="Script" path="res://scenes/entities/player/Overwatch.gd" id="5_3kgyu"]
 [ext_resource type="Texture2D" uid="uid://ci3bti074ghy6" path="res://images/Sword_Small.png" id="5_vkd2h"]
 [ext_resource type="Script" path="res://scenes/entities/player/TimeBomb.gd" id="7_x13bq"]
 [ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapons/projectiles/time_bomb.tscn" id="8_4ce41"]
@@ -38,14 +39,26 @@ shape = SubResource("CircleShape2D_rxain")
 [node name="Gun" type="Node2D" parent="Weapons"]
 script = ExtResource("3_fqq77")
 bullet = ExtResource("4_ct7t2")
+damage = 1.0
 cooldown = 1.0
 
 [node name="Cooldown" type="Timer" parent="Weapons/Gun"]
+
+[node name="Overwatch" type="Node2D" parent="Weapons"]
+script = ExtResource("5_3kgyu")
+
+[node name="Cooldown" type="Timer" parent="Weapons/Overwatch"]
+
+[node name="ActiveTimer" type="Timer" parent="Weapons/Overwatch"]
+wait_time = 2.0
+one_shot = true
 
 [node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swords")]
 script = ExtResource("5_0mp1t")
 swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
 swordsActive = 1
+activeTime = 2.0
+damage = 1.0
 cooldown = 2.0
 
 [node name="ActiveTimer" type="Timer" parent="Weapons/Sword"]
@@ -204,7 +217,6 @@ cooldown = 20.0
 
 [node name="Cooldown" type="Timer" parent="Weapons/TimeBomb"]
 one_shot = true
-autostart = true
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
@@ -215,6 +227,8 @@ shape = SubResource("CircleShape2D_jq8fw")
 metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Weapons/Gun/Cooldown" to="Weapons/Gun" method="_on_timer_timeout"]
+[connection signal="timeout" from="Weapons/Overwatch/Cooldown" to="Weapons/Overwatch" method="_on_timer_timeout"]
+[connection signal="timeout" from="Weapons/Overwatch/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
 [connection signal="timeout" from="Weapons/Sword/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
 [connection signal="timeout" from="Weapons/Sword/Cooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
 [connection signal="body_entered" from="Weapons/Sword/Sword1/SwordImage/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]

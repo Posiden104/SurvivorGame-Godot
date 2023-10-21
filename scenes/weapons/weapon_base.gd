@@ -10,3 +10,5 @@ class_name weapon_base
 
 func _ready():
 	$Cooldown.wait_time = cooldown
+	if isActive:
+		$Cooldown.start()
