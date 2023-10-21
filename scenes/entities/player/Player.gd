@@ -29,3 +29,15 @@ func pickupMagnet():
 	for p in pickups:
 		p.fly_speed *= 2
 		p.magnetize()
+
+func getClosestEnemy() -> CharacterBody2D:
+	var closest: CharacterBody2D
+	var shortestDist: float = 2147483647.0
+	var d: float
+	var enemies = get_tree().get_nodes_in_group("enemies") as Array[CharacterBody2D]
+	for e in enemies:
+		d = (e.get_position() - global_position).length()
+		if d < shortestDist:
+			shortestDist = d
+			closest = e
+	return closest

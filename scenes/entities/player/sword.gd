@@ -1,8 +1,7 @@
 extends weapon_base
 
-#deg per second
+#degrees per second
 @export var speed: float = 360
-#@export var damage: float = 5
 
 @export var swords: Array[Node2D]
 @export var swordsActive: int = 2
@@ -25,7 +24,6 @@ func disable():
 		sword_area.monitoring = false
 
 func _on_sword_timer_timeout():
-#	%SwordImage.visible = false
 	disable()
 	$Cooldown.start()
 
@@ -35,7 +33,7 @@ func _on_sword_cooldown_timeout():
 
 func _process(delta):
 	if isActive:
-		%Sword.rotate(deg_to_rad(speed) * delta)
+		$Sword.rotate(deg_to_rad(speed) * delta)
 
 
 func _on_sword_area_body_entered(body):

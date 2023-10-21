@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
-[ext_resource type="Script" path="res://scenes/entities/player/gun.gd" id="3_temph"]
+[ext_resource type="Script" path="res://scenes/entities/player/Gun.gd" id="3_fqq77"]
 [ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapons/projectiles/bullet.tscn" id="4_ct7t2"]
-[ext_resource type="Script" path="res://scenes/entities/player/sword.gd" id="5_sl622"]
+[ext_resource type="Script" path="res://scenes/entities/player/Sword.gd" id="5_0mp1t"]
 [ext_resource type="Texture2D" uid="uid://ci3bti074ghy6" path="res://images/Sword_Small.png" id="5_vkd2h"]
 [ext_resource type="Script" path="res://scenes/entities/player/TimeBomb.gd" id="7_x13bq"]
 [ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapons/projectiles/time_bomb.tscn" id="8_4ce41"]
@@ -36,15 +36,14 @@ shape = SubResource("CircleShape2D_rxain")
 [node name="Weapons" type="Node2D" parent="."]
 
 [node name="Gun" type="Node2D" parent="Weapons"]
-script = ExtResource("3_temph")
+script = ExtResource("3_fqq77")
 bullet = ExtResource("4_ct7t2")
 cooldown = 1.0
 
 [node name="Cooldown" type="Timer" parent="Weapons/Gun"]
 
 [node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swords")]
-unique_name_in_owner = true
-script = ExtResource("5_sl622")
+script = ExtResource("5_0mp1t")
 swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
 swordsActive = 1
 cooldown = 2.0
