@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp7ckl280iie8"]
+
+[ext_resource type="PackedScene" uid="uid://ogloqd2aef8e" path="res://scenes/levels/Base_Level.tscn" id="1_x027y"]
+[ext_resource type="Texture2D" uid="uid://jmmgalayjhp1" path="res://images/Background.jpg" id="2_70od3"]
+[ext_resource type="Script" path="res://scenes/levels/grass level/EnemyContainer.gd" id="3_pl3gu"]
+[ext_resource type="PackedScene" uid="uid://dhh7w6rc5mr6q" path="res://scenes/pickups/scrap.tscn" id="4_613y7"]
+[ext_resource type="Script" path="res://scenes/levels/grass level/ProjectileContainer.gd" id="4_amnd2"]
+[ext_resource type="PackedScene" uid="uid://cebwi4eryl6dt" path="res://scenes/pickups/magnet.tscn" id="5_o3t2n"]
+[ext_resource type="PackedScene" uid="uid://d2nh73ws0tria" path="res://scenes/spawners/spawner.tscn" id="6_3y0x1"]
+
+[node name="Grass_Level" instance=ExtResource("1_x027y")]
+
+[node name="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_70od3")
+
+[node name="EnemyContainer" parent="." index="1"]
+script = ExtResource("3_pl3gu")
+
+[node name="ProjectileContainer" parent="." index="2"]
+script = ExtResource("4_amnd2")
+
+[node name="Scrap" parent="ScrapContainer" index="0" instance=ExtResource("4_613y7")]
+position = Vector2(205, 366)
+
+[node name="Scrap2" parent="ScrapContainer" index="1" instance=ExtResource("4_613y7")]
+position = Vector2(256, 490)
+
+[node name="Scrap3" parent="ScrapContainer" index="2" instance=ExtResource("4_613y7")]
+position = Vector2(511, 529)
+
+[node name="Scrap4" parent="ScrapContainer" index="3" instance=ExtResource("4_613y7")]
+position = Vector2(343, 409)
+
+[node name="Scrap5" parent="ScrapContainer" index="4" instance=ExtResource("4_613y7")]
+position = Vector2(427, 478)
+
+[node name="Scrap6" parent="ScrapContainer" index="5" instance=ExtResource("4_613y7")]
+position = Vector2(353, 544)
+
+[node name="Magnet" parent="PickupContainer" index="0" instance=ExtResource("5_o3t2n")]
+position = Vector2(957, 494)
+
+[node name="Spawner" parent="." index="6" instance=ExtResource("6_3y0x1")]
+position = Vector2(1026, 161)
+autostart = true
+
+[node name="Spawner2" parent="." index="7" instance=ExtResource("6_3y0x1")]
+position = Vector2(307, 186)
+enemy_type_to_spawn = 1
+min_spawn_time = 3.0
+max_spawn_time = 7.0
+autostart = true
+
+[connection signal="spawn" from="Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
+[connection signal="spawn" from="Spawner2" to="EnemyContainer" method="_on_spawner_2_spawn"]
+[connection signal="spawn" from="Spawner2" to="EnemyContainer" method="_on_spawner_spawn"]

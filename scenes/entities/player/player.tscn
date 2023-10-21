@@ -40,11 +40,11 @@ bullet = ExtResource("4_ct7t2")
 [node name="GunTimer" type="Timer" parent="Weapons/Gun"]
 unique_name_in_owner = true
 
-[node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swordImages")]
+[node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swords")]
 unique_name_in_owner = true
 script = ExtResource("5_sl622")
-swordImages = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
-swordsActive = 8
+swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
+swordsActive = 1
 
 [node name="SwordTimer" type="Timer" parent="Weapons/Sword"]
 unique_name_in_owner = true

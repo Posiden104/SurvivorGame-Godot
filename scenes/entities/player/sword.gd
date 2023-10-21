@@ -4,23 +4,25 @@ extends Node2D
 @export var speed: float = 360
 @export var damage: float = 5
 
-@export var swordImages: Array[Node2D]
+@export var swords: Array[Node2D]
 @export var swordsActive: int = 2
 var isActive: bool = false
 
 func enable():
 	isActive = true
-	if swordsActive > swordImages.size():
-		swordsActive = swordImages.size()
+	if swordsActive > swords.size():
+		swordsActive = swords.size()
 	for i in swordsActive:
-		swordImages[i].visible = true
+		swords[i].visible = true
+		var sword_area = swords[i].get_child(0).get_child(0) as Area2D
+		sword_area.monitoring = true
 	
 func disable():
 	isActive = false
-	if swordsActive > swordImages.size():
-		swordsActive = swordImages.size()
-	for i in swordsActive:
-		swordImages[i].visible = false
+	for i in swords.size():
+		swords[i].visible = false
+		var sword_area = swords[i].get_child(0).get_child(0) as Area2D
+		sword_area.monitoring = false
 
 func _on_sword_timer_timeout():
 #	%SwordImage.visible = false
@@ -28,7 +30,6 @@ func _on_sword_timer_timeout():
 	%SwordCooldown.start()
 
 func _on_sword_cooldown_timeout():
-#	%SwordImage.visible = true
 	enable()
 	%SwordTimer.start()
 
