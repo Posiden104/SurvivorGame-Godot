@@ -1,12 +1,16 @@
-extends Node2D
+extends weapon_base
 
-@export var isActive : bool = true
 @export var bullet : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	%GunTimer.start(1)
+	super()
+	if isActive:
+		$Cooldown.start()
 
 
 func _on_timer_timeout():
-	$"../..".shootGun(bullet)
+	var b = bullet.instantiate() as bullet
+	b.dir = $"../..".dir
+	b.global_position = global_position
+	$"../..".shootGun(b)

@@ -1,8 +1,9 @@
 extends Node2D
 class_name projectile_container
 
-func _on_player_shoot_gun(bulletScene:PackedScene, gp:Vector2, dir:Vector2):
-	var b = bulletScene.instantiate() as bullet
-	add_child(b)
-	b.dir = dir
-	b.global_position = gp
+func _on_player_shoot_gun(bulletScene: bullet):
+	add_child(bulletScene)
+
+
+func _on_player_place_time_bomb(bombScene: time_bomb):
+	add_child(bombScene)

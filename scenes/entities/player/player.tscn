@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=12 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapons/projectiles/bullet.tscn" id="4_ct7t2"]
 [ext_resource type="Script" path="res://scenes/entities/player/sword.gd" id="5_sl622"]
 [ext_resource type="Texture2D" uid="uid://ci3bti074ghy6" path="res://images/Sword_Small.png" id="5_vkd2h"]
+[ext_resource type="Script" path="res://scenes/entities/player/TimeBomb.gd" id="7_x13bq"]
+[ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapons/projectiles/time_bomb.tscn" id="8_4ce41"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxain"]
 radius = 30.0
@@ -36,26 +38,24 @@ shape = SubResource("CircleShape2D_rxain")
 [node name="Gun" type="Node2D" parent="Weapons"]
 script = ExtResource("3_temph")
 bullet = ExtResource("4_ct7t2")
+cooldown = 1.0
 
-[node name="GunTimer" type="Timer" parent="Weapons/Gun"]
-unique_name_in_owner = true
+[node name="Cooldown" type="Timer" parent="Weapons/Gun"]
 
 [node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swords")]
 unique_name_in_owner = true
 script = ExtResource("5_sl622")
 swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
 swordsActive = 1
+cooldown = 2.0
 
-[node name="SwordTimer" type="Timer" parent="Weapons/Sword"]
-unique_name_in_owner = true
+[node name="ActiveTimer" type="Timer" parent="Weapons/Sword"]
 wait_time = 2.0
 one_shot = true
 
-[node name="SwordCooldown" type="Timer" parent="Weapons/Sword"]
-unique_name_in_owner = true
+[node name="Cooldown" type="Timer" parent="Weapons/Sword"]
 wait_time = 2.0
 one_shot = true
-autostart = true
 
 [node name="Sword1" type="Node2D" parent="Weapons/Sword"]
 visible = false
@@ -66,6 +66,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword1/SwordImage"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword1/SwordImage/SwordArea"]
@@ -82,6 +83,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword2/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword2/SwordImage2/SwordArea"]
@@ -99,6 +101,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword3/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword3/SwordImage2/SwordArea"]
@@ -116,6 +119,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword4/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword4/SwordImage2/SwordArea"]
@@ -133,6 +137,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword5/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword5/SwordImage2/SwordArea"]
@@ -150,6 +155,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword6/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword6/SwordImage2/SwordArea"]
@@ -167,6 +173,7 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword7/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword7/SwordImage2/SwordArea"]
@@ -184,11 +191,21 @@ scale = Vector2(0.634615, 0.634615)
 texture = ExtResource("5_vkd2h")
 
 [node name="SwordArea" type="Area2D" parent="Weapons/Sword/Sword8/SwordImage2"]
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Weapons/Sword/Sword8/SwordImage2/SwordArea"]
 shape = SubResource("CapsuleShape2D_caktr")
 metadata/_edit_lock_ = true
+
+[node name="TimeBomb" type="Node2D" parent="Weapons"]
+script = ExtResource("7_x13bq")
+bomb_scene = ExtResource("8_4ce41")
+cooldown = 20.0
+
+[node name="Cooldown" type="Timer" parent="Weapons/TimeBomb"]
+one_shot = true
+autostart = true
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
@@ -198,9 +215,9 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_jq8fw")
 metadata/_edit_lock_ = true
 
-[connection signal="timeout" from="Weapons/Gun/GunTimer" to="Weapons/Gun" method="_on_timer_timeout"]
-[connection signal="timeout" from="Weapons/Sword/SwordTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
-[connection signal="timeout" from="Weapons/Sword/SwordCooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
+[connection signal="timeout" from="Weapons/Gun/Cooldown" to="Weapons/Gun" method="_on_timer_timeout"]
+[connection signal="timeout" from="Weapons/Sword/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
+[connection signal="timeout" from="Weapons/Sword/Cooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
 [connection signal="body_entered" from="Weapons/Sword/Sword1/SwordImage/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
 [connection signal="body_entered" from="Weapons/Sword/Sword2/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
 [connection signal="body_entered" from="Weapons/Sword/Sword3/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
@@ -209,3 +226,4 @@ metadata/_edit_lock_ = true
 [connection signal="body_entered" from="Weapons/Sword/Sword6/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
 [connection signal="body_entered" from="Weapons/Sword/Sword7/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
 [connection signal="body_entered" from="Weapons/Sword/Sword8/SwordImage2/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]
+[connection signal="timeout" from="Weapons/TimeBomb/Cooldown" to="Weapons/TimeBomb" method="_on_bomb_cooldown_timer_timeout"]

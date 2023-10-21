@@ -1,12 +1,12 @@
-extends Node2D
+extends weapon_base
 
 #deg per second
 @export var speed: float = 360
-@export var damage: float = 5
+#@export var damage: float = 5
 
 @export var swords: Array[Node2D]
 @export var swordsActive: int = 2
-var isActive: bool = false
+#var isActive: bool = false
 
 func enable():
 	isActive = true
@@ -27,11 +27,11 @@ func disable():
 func _on_sword_timer_timeout():
 #	%SwordImage.visible = false
 	disable()
-	%SwordCooldown.start()
+	$Cooldown.start()
 
 func _on_sword_cooldown_timeout():
 	enable()
-	%SwordTimer.start()
+	$ActiveTimer.start()
 
 func _process(delta):
 	if isActive:

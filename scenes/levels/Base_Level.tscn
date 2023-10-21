@@ -32,4 +32,5 @@ script = ExtResource("3_8yje1")
 [node name="Player" parent="." instance=ExtResource("4_eryxj")]
 position = Vector2(574, 325)
 
+[connection signal="place_time_bomb" from="Player" to="ProjectileContainer" method="_on_player_place_time_bomb"]
 [connection signal="shoot_gun" from="Player" to="ProjectileContainer" method="_on_player_shoot_gun"]
