@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=14 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ci3bti074ghy6" path="res://images/Sword_Small.png" id="5_vkd2h"]
 [ext_resource type="Script" path="res://scenes/entities/player/TimeBomb.gd" id="7_x13bq"]
 [ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapons/projectiles/time_bomb.tscn" id="8_4ce41"]
+[ext_resource type="Texture2D" uid="uid://c2pfb7d33lfea" path="res://images/crosshair.png" id="9_2anyc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxain"]
 radius = 30.0
@@ -46,10 +47,24 @@ cooldown = 1.0
 
 [node name="Overwatch" type="Node2D" parent="Weapons"]
 script = ExtResource("5_3kgyu")
+activeTime = 5.0
+damage = 10.0
+isActive = true
+cooldown = 5.0
+
+[node name="OverwatchImage" type="Sprite2D" parent="Weapons/Overwatch"]
+visible = false
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("9_2anyc")
 
 [node name="Cooldown" type="Timer" parent="Weapons/Overwatch"]
+one_shot = true
 
 [node name="ActiveTimer" type="Timer" parent="Weapons/Overwatch"]
+wait_time = 2.0
+one_shot = true
+
+[node name="TargetFailTimer" type="Timer" parent="Weapons/Overwatch"]
 wait_time = 2.0
 one_shot = true
 
@@ -227,8 +242,9 @@ shape = SubResource("CircleShape2D_jq8fw")
 metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Weapons/Gun/Cooldown" to="Weapons/Gun" method="_on_timer_timeout"]
-[connection signal="timeout" from="Weapons/Overwatch/Cooldown" to="Weapons/Overwatch" method="_on_timer_timeout"]
-[connection signal="timeout" from="Weapons/Overwatch/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
+[connection signal="timeout" from="Weapons/Overwatch/Cooldown" to="Weapons/Overwatch" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Weapons/Overwatch/ActiveTimer" to="Weapons/Overwatch" method="_on_active_timer_timeout"]
+[connection signal="timeout" from="Weapons/Overwatch/TargetFailTimer" to="Weapons/Overwatch" method="_on_target_fail_timer_timeout"]
 [connection signal="timeout" from="Weapons/Sword/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
 [connection signal="timeout" from="Weapons/Sword/Cooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
 [connection signal="body_entered" from="Weapons/Sword/Sword1/SwordImage/SwordArea" to="Weapons/Sword" method="_on_sword_area_body_entered"]

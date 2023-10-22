@@ -31,7 +31,7 @@ func pickupMagnet():
 		p.magnetize()
 
 func getClosestEnemy() -> CharacterBody2D:
-	var closest: CharacterBody2D
+	var closest: CharacterBody2D = null
 	var shortestDist: float = 2147483647.0
 	var d: float
 	var enemies = get_tree().get_nodes_in_group("enemies") as Array[CharacterBody2D]

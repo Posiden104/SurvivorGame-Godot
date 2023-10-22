@@ -52,5 +52,4 @@ max_spawn_time = 7.0
 autostart = true
 
 [connection signal="spawn" from="Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
-[connection signal="spawn" from="Spawner2" to="EnemyContainer" method="_on_spawner_2_spawn"]
 [connection signal="spawn" from="Spawner2" to="EnemyContainer" method="_on_spawner_spawn"]
