@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp7ckl280iie8"]
+[gd_scene load_steps=10 format=3 uid="uid://cp7ckl280iie8"]
 
 [ext_resource type="PackedScene" uid="uid://ogloqd2aef8e" path="res://scenes/levels/Base_Level.tscn" id="1_x027y"]
 [ext_resource type="Texture2D" uid="uid://jmmgalayjhp1" path="res://images/Background.jpg" id="2_70od3"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scenes/levels/grass level/ProjectileContainer.gd" id="4_amnd2"]
 [ext_resource type="PackedScene" uid="uid://cebwi4eryl6dt" path="res://scenes/pickups/magnet.tscn" id="5_o3t2n"]
 [ext_resource type="PackedScene" uid="uid://d2nh73ws0tria" path="res://scenes/spawners/spawner.tscn" id="6_3y0x1"]
+[ext_resource type="PackedScene" uid="uid://0xx5vmilyslu" path="res://scenes/entities/enemies/zombie_fast.tscn" id="8_ljh26"]
+[ext_resource type="PackedScene" uid="uid://civf2v7v2gn7c" path="res://scenes/entities/enemies/zombie_slow.tscn" id="9_qcfdh"]
 
 [node name="Grass_Level" instance=ExtResource("1_x027y")]
 
@@ -40,15 +42,20 @@ position = Vector2(353, 544)
 [node name="Magnet" parent="PickupContainer" index="0" instance=ExtResource("5_o3t2n")]
 position = Vector2(957, 494)
 
-[node name="Spawner" parent="." index="6" instance=ExtResource("6_3y0x1")]
+[node name="Slow zombie spawner" parent="." index="6" instance=ExtResource("6_3y0x1")]
 position = Vector2(1026, 161)
-autostart = true
 
-[node name="Spawner2" parent="." index="7" instance=ExtResource("6_3y0x1")]
+[node name="Fast Spawner" parent="." index="7" instance=ExtResource("6_3y0x1")]
 position = Vector2(307, 186)
 enemy_type_to_spawn = 1
 min_spawn_time = 3.0
 max_spawn_time = 7.0
 
-[connection signal="spawn" from="Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
-[connection signal="spawn" from="Spawner2" to="EnemyContainer" method="_on_spawner_spawn"]
+[node name="ZombieFast" parent="." index="8" instance=ExtResource("8_ljh26")]
+position = Vector2(1044, 256)
+
+[node name="ZombieSlow" parent="." index="9" instance=ExtResource("9_qcfdh")]
+position = Vector2(1125, 343)
+
+[connection signal="spawn" from="Slow zombie spawner" to="EnemyContainer" method="_on_spawner_spawn"]
+[connection signal="spawn" from="Fast Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
