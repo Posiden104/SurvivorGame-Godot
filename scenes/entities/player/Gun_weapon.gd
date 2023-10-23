@@ -13,4 +13,5 @@ func _on_timer_timeout():
 	var b = bullet.instantiate() as bullet
 	b.dir = $"../..".dir
 	b.global_position = global_position
+	b.hitbox.damage = damage
 	$"../..".shootGun(b)

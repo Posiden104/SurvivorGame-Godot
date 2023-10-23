@@ -2,8 +2,14 @@ extends active_weapon_base
 
 var target: CharacterBody2D
 @onready var player: Player = $"../.."
-var scale_max: float = 0.03
-var scale_min: float = 0.009
+var scale_max: float = 0.05
+var scale_min: float = 0.025
+
+@export var crosshair: overwatch
+
+func _ready():
+	super()
+	crosshair.scale = Vector2(scale_max, scale_max)
 
 func _process(_delta):
 	if isActive:
@@ -11,19 +17,19 @@ func _process(_delta):
 			$TargetFailTimer.start()
 			isActive = false
 		else:
-			$OverwatchImage.global_position = target.global_position
-			var scaleVal = lerpf(scale_max, scale_min, 1-($ActiveTimer.get_time_left()/cooldown))
-			$OverwatchImage.scale = Vector2(scaleVal, scaleVal)
-			
+			crosshair.global_position = target.global_position
+			var scaleVal = clampf(lerpf(scale_max, scale_min, 1-($ActiveTimer.get_time_left()/cooldown)), scale_min, scale_max)
+			crosshair.scale = Vector2(scaleVal, scaleVal)
 
 func activate():
+	crosshair.hitbox.damage = damage
 	if acquire_target():
 		isActive = true
-		$OverwatchImage.global_position = target.global_position
-		$OverwatchImage.visible = true
+		crosshair.global_position = target.global_position
+		crosshair.visible = true
 		$ActiveTimer.start()
 	else:
-		print("target failed")
+		print("overwatch - target fail")
 		$ActiveTimer.stop()
 		$Cooldown.stop()
 		$TargetFailTimer.start()
@@ -34,7 +40,7 @@ func acquire_target() -> bool:
 	
 func deactivate():
 	isActive = false
-	$OverwatchImage.visible = false
+	crosshair.visible = false
 	$Cooldown.start()
 
 func _on_cooldown_timeout():
@@ -42,9 +48,7 @@ func _on_cooldown_timeout():
 
 func _on_active_timer_timeout():
 	deactivate()
-	if "damage" in target:
-		target.damage(damage)
-
+	crosshair.do_damage(target)
 
 func _on_target_fail_timer_timeout():
 	activate()
