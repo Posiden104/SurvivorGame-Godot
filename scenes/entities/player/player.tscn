@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=15 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/entities/player/TimeBomb.gd" id="7_x13bq"]
 [ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapons/projectiles/time_bomb.tscn" id="8_4ce41"]
 [ext_resource type="Texture2D" uid="uid://c2pfb7d33lfea" path="res://images/crosshair.png" id="9_2anyc"]
+[ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://components/health_component.tscn" id="11_40iqt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxain"]
 radius = 30.0
@@ -240,6 +241,8 @@ collision_mask = 16
 [node name="Pickup Collider" type="CollisionShape2D" parent="Pickup Range"]
 shape = SubResource("CircleShape2D_jq8fw")
 metadata/_edit_lock_ = true
+
+[node name="HealthComponent" parent="." instance=ExtResource("11_40iqt")]
 
 [connection signal="timeout" from="Weapons/Gun/Cooldown" to="Weapons/Gun" method="_on_timer_timeout"]
 [connection signal="timeout" from="Weapons/Overwatch/Cooldown" to="Weapons/Overwatch" method="_on_cooldown_timeout"]
