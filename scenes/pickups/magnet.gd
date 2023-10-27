@@ -7,5 +7,8 @@ func _on_magnet_area_magnetize():
 	magnetize()
 
 func _on_magnet_area_pickup():
-	player.pickupMagnet()
+	var pickups = get_tree().get_nodes_in_group("pickups") as Array[magnetic_base]
+	for p in pickups:
+		p.fly_speed *= 2
+		p.magnetize()
 	queue_free()

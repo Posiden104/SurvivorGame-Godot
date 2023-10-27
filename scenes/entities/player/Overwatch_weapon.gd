@@ -6,10 +6,12 @@ var scale_max: float = 0.05
 var scale_min: float = 0.025
 
 @export var crosshair: overwatch
+@export var damage_tracker: stat_tracker_component
 
 func _ready():
 	super()
 	crosshair.scale = Vector2(scale_max, scale_max)
+	crosshair.hitbox.damage_dealt.connect(damage_tracker.add)
 
 func _process(_delta):
 	if isActive:

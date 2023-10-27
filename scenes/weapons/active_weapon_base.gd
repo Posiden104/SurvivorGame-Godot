@@ -8,5 +8,5 @@ func _ready():
 	super()
 	$ActiveTimer.wait_time = activeTime
 
-func set_active(val: bool):
+func set_active(_val: bool):
 	print("dont use active_weapon_base set_active")

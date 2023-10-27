@@ -14,4 +14,4 @@ func _on_scrap_area_magnetize():
 
 func _on_scrap_area_pickup():
 	queue_free()
-	player.increaseScrap()
+	player.gather_scrap()

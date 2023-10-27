@@ -15,15 +15,20 @@ run/main_scene="res://scenes/levels/grass level/Grass_Level.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UI="*res://scenes/ui/ui.tscn"
+StatsManager="*res://scenes/globals/stats_manager.tscn"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/always_on_top=true
 
-[editor]
+[filesystem]
 
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
+import/blender/enabled=false
 
 [input]
 

@@ -5,6 +5,8 @@ class_name health_component
 signal died
 signal health_update(new_hp: float)
 
+@export var entity_name: String
+
 @export var max_hp: float = 100:
 	set(value):
 		max_hp = value
@@ -17,7 +19,7 @@ signal health_update(new_hp: float)
 		hp = clampf(value, 0, max_hp)
 		health_update.emit(hp)
 		if hp <= 0.0 and not has_died:
-			died.emit()
+			kill()
 
 var prev_hp: float
 var has_died: bool = false
@@ -29,3 +31,7 @@ func damage(dmg: float):
 	
 func heal(amt: float):
 	damage(-amt)
+	
+func kill():
+	died.emit()
+	StatsManager.add_death(entity_name)
