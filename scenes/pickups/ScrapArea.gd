@@ -1,1 +1,0 @@
-extends magnetic_detector

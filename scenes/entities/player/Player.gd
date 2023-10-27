@@ -16,6 +16,7 @@ var level: int = 1
 
 func _ready() -> void:
 	UI.update_health(health.hp, health.max_hp)
+	UI.update_xp(level_manager.xp, level_manager.xp_to_next_level)
 
 func _physics_process(_delta):
 	set_velocity(Input.get_vector("Left", "Right", "Up", "Down").normalized() * speed)
@@ -31,6 +32,7 @@ func placeTimeBomb(bomb: time_bomb):
 
 func gather_scrap():
 	level_manager.add_xp(1)
+	UI.update_xp(level_manager.xp)
 
 func getClosestEnemy() -> CharacterBody2D:
 	var closest: CharacterBody2D = null
@@ -48,4 +50,4 @@ func _on_health_component_health_update(new_hp) -> void:
 	UI.update_health(new_hp)
 
 func _on_level_up_component_level_up(_new_level) -> void:
-	print("level up!")
+	UI.update_xp(level_manager.xp, level_manager.xp_to_next_level)
