@@ -1,5 +1,7 @@
 extends Control
 
+class_name game_ui_class
+
 @export var health_bar: TextureProgressBar
 @export var xp_bar: TextureProgressBar
 @export var clock: Label
@@ -9,12 +11,20 @@ var clock_time: float
 var clock_text: String
 var clock_format: String = "%02d:%02d"
 
-func _ready() -> void:
-	update_clock()
-
 func _process(delta: float) -> void:
 	if clock_running: 
 		clock_time += delta
+
+func enable(restart: bool, pause: bool):
+	if restart: 
+		restart_clock(pause)
+	if pause: 
+		pause_clock()
+	visible = true
+	
+func disable():
+	visible = false
+	pause_clock()
 
 func update_health(hp: float, max_hp = null):
 	if max_hp: health_bar.max_value = max_hp
@@ -23,6 +33,11 @@ func update_health(hp: float, max_hp = null):
 func update_xp(xp: float, max_xp = null):
 	if max_xp: xp_bar.max_value = max_xp
 	xp_bar.value = xp
+
+func restart_clock(pause: bool) -> void:
+	clock_running = !pause
+	clock_time = 0.0
+	update_clock()
 
 func start_clock():
 	clock_running = true

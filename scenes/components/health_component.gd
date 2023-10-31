@@ -34,4 +34,4 @@ func heal(amt: float):
 	
 func kill():
 	died.emit()
-	StatsManager.add_death(entity_name)
+	Game.StatsManager.add_death(entity_name)

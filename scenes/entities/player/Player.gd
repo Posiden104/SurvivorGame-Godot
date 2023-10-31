@@ -15,8 +15,12 @@ var dir: Vector2 = Vector2.RIGHT
 var level: int = 1
 
 func _ready() -> void:
-	UI.update_health(health.hp, health.max_hp)
-	UI.update_xp(level_manager.xp, level_manager.xp_to_next_level)
+	Game.UI.update_health(health.hp, health.max_hp)
+	Game.UI.update_xp(level_manager.xp, level_manager.xp_to_next_level)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ESCAPE"):
+		health.died.emit()
 
 func _physics_process(_delta):
 	set_velocity(Input.get_vector("Left", "Right", "Up", "Down").normalized() * speed)
@@ -32,7 +36,7 @@ func placeTimeBomb(bomb: time_bomb):
 
 func gather_scrap():
 	level_manager.add_xp(1)
-	UI.update_xp(level_manager.xp)
+	Game.UI.update_xp(level_manager.xp)
 
 func getClosestEnemy() -> CharacterBody2D:
 	var closest: CharacterBody2D = null
@@ -47,7 +51,10 @@ func getClosestEnemy() -> CharacterBody2D:
 	return closest
 
 func _on_health_component_health_update(new_hp) -> void:
-	UI.update_health(new_hp)
+	Game.UI.update_health(new_hp)
 
 func _on_level_up_component_level_up(_new_level) -> void:
-	UI.update_xp(level_manager.xp, level_manager.xp_to_next_level)
+	Game.UI.update_xp(level_manager.xp, level_manager.xp_to_next_level)
+
+func _on_health_component_died() -> void:
+	Game.game_over()

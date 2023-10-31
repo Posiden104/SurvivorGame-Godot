@@ -187,5 +187,6 @@ xp_to_next_level = 10
 [connection signal="timeout" from="Weapons/Sword/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
 [connection signal="timeout" from="Weapons/Sword/Cooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
 [connection signal="timeout" from="Weapons/TimeBomb/Cooldown" to="Weapons/TimeBomb" method="_on_bomb_cooldown_timer_timeout"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_update" from="HealthComponent" to="." method="_on_health_component_health_update"]
 [connection signal="LEVEL_UP" from="level_up_component" to="." method="_on_level_up_component_level_up"]
