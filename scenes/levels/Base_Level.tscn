@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://ogloqd2aef8e"]
+
+[ext_resource type="Script" path="res://scenes/levels/EnemyContainer.gd" id="2_y88t8"]
+[ext_resource type="Script" path="res://scenes/levels/ProjectileContainer.gd" id="3_8yje1"]
+[ext_resource type="PackedScene" uid="uid://co4b3ayy6bk2f" path="res://scenes/entities/player/player.tscn" id="4_eryxj"]
+
+[node name="Game_Base" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1788, 1788)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+centered = false
+region_rect = Rect2(0, 0, 894, 894)
+metadata/_edit_lock_ = true
+
+[node name="EnemyContainer" type="Marker2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_y88t8")
+
+[node name="ProjectileContainer" type="Marker2D" parent="."]
+script = ExtResource("3_8yje1")
+
+[node name="ScrapContainer" type="Marker2D" parent="."]
+
+[node name="PickupContainer" type="Marker2D" parent="."]
+
+[node name="SpawnerContainer" type="Marker2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("4_eryxj")]
+position = Vector2(574, 325)
+
+[connection signal="place_time_bomb" from="Player" to="ProjectileContainer" method="_on_player_place_time_bomb"]
+[connection signal="shoot_gun" from="Player" to="ProjectileContainer" method="_on_player_shoot_gun"]

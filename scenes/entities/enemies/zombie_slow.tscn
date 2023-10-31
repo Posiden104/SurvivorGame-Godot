@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://civf2v7v2gn7c"]
+
+[ext_resource type="Texture2D" uid="uid://rwn08jqhi43e" path="res://images/Zombie.png" id="1_3cmdp"]
+[ext_resource type="Script" path="res://scenes/entities/enemies/zombie.gd" id="1_5gg5j"]
+[ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="3_1o7ss"]
+[ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="4_k8vnn"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="5_6mjgr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rj57t"]
+radius = 16.0
+height = 44.0
+
+[node name="ZombieSlow" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "hitbox") groups=["enemies"]]
+collision_layer = 2
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_5gg5j")
+health = NodePath("HealthComponent")
+hurtbox = NodePath("HurtboxComponent")
+hitbox = NodePath("HitboxComponent")
+speed = 45.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rj57t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_3cmdp")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_1o7ss")]
+entity_name = "Slow Zombie"
+max_hp = 10.0
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("4_k8vnn")]
+collision_layer = 2
+collision_mask = 4
+health_comp = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_rj57t")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("5_6mjgr")]
+collision_layer = 2
+damage = 5.0
+damage_cooldown = 0.5
+has_damage_cooldown = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+scale = Vector2(1.1, 1.1)
+shape = SubResource("CapsuleShape2D_rj57t")
