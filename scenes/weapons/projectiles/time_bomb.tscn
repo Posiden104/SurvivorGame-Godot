@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c35wy5s7tfhxg" path="res://images/bomb.png" id="1_bqivc"]
 [ext_resource type="Script" path="res://scenes/weapons/projectiles/time_bomb.gd" id="1_qhmay"]
 [ext_resource type="Texture2D" uid="uid://lggnikojqdmc" path="res://images/circle-empty.png" id="3_oasme"]
-[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://components/hitbox_component.tscn" id="4_jl1ax"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="4_jl1ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnru2"]
 radius = 32.0
@@ -27,6 +27,8 @@ one_shot = true
 [node name="HitboxComponent" parent="." instance=ExtResource("4_jl1ax")]
 collision_layer = 4
 collision_mask = 2
+track_damage = true
+damage_name = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_wnru2")

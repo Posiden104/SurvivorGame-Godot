@@ -9,9 +9,9 @@ func _ready():
 	$Sprite2D.texture = image
 	player = get_tree().get_nodes_in_group("player")[0]
 	
-func _on_scrap_area_magnetize():
+func _on_magnetic_component_magnetize() -> void:
 	magnetize()
 
-func _on_scrap_area_pickup():
+func _on_magnetic_component_pickup() -> void:
 	queue_free()
-	player.increaseScrap()
+	player.gather_scrap()

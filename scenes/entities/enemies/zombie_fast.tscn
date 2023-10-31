@@ -1,22 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://0xx5vmilyslu"]
+[gd_scene load_steps=7 format=3 uid="uid://0xx5vmilyslu"]
 
 [ext_resource type="Script" path="res://scenes/entities/enemies/zombie.gd" id="1_rl1ko"]
 [ext_resource type="Texture2D" uid="uid://rwn08jqhi43e" path="res://images/Zombie.png" id="2_nv7am"]
 [ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="3_dxm8k"]
 [ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="4_t0c25"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="5_hyv0r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rj57t"]
 radius = 16.0
 height = 44.0
 
-[node name="ZombieFast" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox") groups=["enemies"]]
+[node name="ZombieFast" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "hitbox") groups=["enemies"]]
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_rl1ko")
 health = NodePath("HealthComponent")
 hurtbox = NodePath("HurtboxComponent")
-speed = 100.0
+hitbox = NodePath("HitboxComponent")
+speed = 60.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rj57t")
@@ -26,10 +28,22 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_nv7am")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_dxm8k")]
+entity_name = "Fast Zombie"
 max_hp = 1.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("4_t0c25")]
+collision_layer = 2
 health_comp = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_rj57t")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("5_hyv0r")]
+collision_layer = 2
+damage = 1.0
+damage_cooldown = 0.1
+has_damage_cooldown = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+scale = Vector2(1.1, 1.1)
 shape = SubResource("CapsuleShape2D_rj57t")

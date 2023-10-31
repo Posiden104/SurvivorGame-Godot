@@ -20,6 +20,8 @@ collision_layer = 4
 collision_mask = 2
 monitoring = false
 damage = 1.0
+track_damage = true
+damage_name = 1
 
 [node name="SwordCollider" type="CollisionShape2D" parent="HitboxComponent"]
 scale = Vector2(0.634615, 0.634615)

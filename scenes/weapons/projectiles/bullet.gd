@@ -6,8 +6,8 @@ class_name bullet
 
 @export var hitbox: hitbox_component
 
-var hitLimit:int = 1
-var bulletLife:float = 10.0
+var hitLimit: int = 1
+var bulletLife: float = 10.0
 var dir = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.

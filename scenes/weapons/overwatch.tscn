@@ -11,6 +11,8 @@ script = ExtResource("1_3cfc8")
 hitbox = NodePath("HitboxComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_bouo6")]
+track_damage = true
+damage_name = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_kk6i3")

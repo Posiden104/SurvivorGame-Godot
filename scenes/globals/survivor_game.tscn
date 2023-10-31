@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://s6ir3hci4m7i"]
+
+[ext_resource type="Script" path="res://scenes/globals/SurvivorGame.gd" id="1_k05qo"]
+[ext_resource type="PackedScene" uid="uid://mfkchuppty8s" path="res://scenes/ui/ui.tscn" id="2_axivr"]
+[ext_resource type="PackedScene" uid="uid://b1fco3sjv10hq" path="res://scenes/globals/stats_manager.tscn" id="3_5u6bk"]
+
+[node name="SurvivorGame" type="Node2D" node_paths=PackedStringArray("UI", "STATS_MANAGER", "Level")]
+script = ExtResource("1_k05qo")
+UI = NodePath("ui")
+STATS_MANAGER = NodePath("stats_manager")
+Level = NodePath("Level")
+
+[node name="ui" parent="." instance=ExtResource("2_axivr")]
+
+[node name="stats_manager" parent="." instance=ExtResource("3_5u6bk")]
+
+[node name="Level" type="Node2D" parent="."]

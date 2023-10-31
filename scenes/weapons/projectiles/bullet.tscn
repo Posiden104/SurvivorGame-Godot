@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d253x2mgt68yk" path="res://images/circle-full.png" id="1_iif7x"]
 [ext_resource type="Script" path="res://scenes/weapons/projectiles/bullet.gd" id="1_y87rr"]
-[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://components/hitbox_component.tscn" id="3_asmgi"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="3_asmgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7cu"]
 radius = 5.0
@@ -21,6 +21,7 @@ texture = ExtResource("1_iif7x")
 collision_layer = 4
 collision_mask = 10
 damage = 1.0
+track_damage = true
 
 [node name="Collider" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_qx7cu")

@@ -5,6 +5,12 @@ extends active_weapon_base
 
 @export var swords: Array[sword]
 @export var swordsActive: int = 1
+@export var damage_tracker: stat_tracker_component
+
+func _ready() -> void:
+	super()
+	for s in swords:
+		s.hitbox.damage_dealt.connect(damage_tracker.add)
 
 func set_active(val: bool):
 	isActive = val

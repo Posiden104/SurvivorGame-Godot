@@ -18,6 +18,18 @@ texture = ExtResource("2_70od3")
 [node name="EnemyContainer" parent="." index="1"]
 script = ExtResource("3_pl3gu")
 
+[node name="ZombieFast" parent="EnemyContainer" index="0" instance=ExtResource("8_ljh26")]
+position = Vector2(534, 205)
+
+[node name="ZombieSlow" parent="EnemyContainer" index="1" instance=ExtResource("9_qcfdh")]
+position = Vector2(610, 211)
+
+[node name="ZombieFast3" parent="EnemyContainer" index="2" instance=ExtResource("8_ljh26")]
+position = Vector2(452, 246)
+
+[node name="ZombieFast2" parent="EnemyContainer" index="3" instance=ExtResource("8_ljh26")]
+position = Vector2(416, 183)
+
 [node name="ProjectileContainer" parent="." index="2"]
 script = ExtResource("4_amnd2")
 
@@ -37,25 +49,31 @@ position = Vector2(343, 409)
 position = Vector2(427, 478)
 
 [node name="Scrap6" parent="ScrapContainer" index="5" instance=ExtResource("4_613y7")]
-position = Vector2(353, 544)
+position = Vector2(183, 538)
+
+[node name="Scrap7" parent="ScrapContainer" index="6" instance=ExtResource("4_613y7")]
+position = Vector2(335, 497)
+
+[node name="Scrap8" parent="ScrapContainer" index="7" instance=ExtResource("4_613y7")]
+position = Vector2(386, 592)
+
+[node name="Scrap9" parent="ScrapContainer" index="8" instance=ExtResource("4_613y7")]
+position = Vector2(303, 570)
+
+[node name="Scrap10" parent="ScrapContainer" index="9" instance=ExtResource("4_613y7")]
+position = Vector2(442, 548)
 
 [node name="Magnet" parent="PickupContainer" index="0" instance=ExtResource("5_o3t2n")]
 position = Vector2(957, 494)
 
-[node name="Slow zombie spawner" parent="." index="6" instance=ExtResource("6_3y0x1")]
+[node name="Slow zombie spawner" parent="SpawnerContainer" index="0" instance=ExtResource("6_3y0x1")]
 position = Vector2(1026, 161)
 
-[node name="Fast Spawner" parent="." index="7" instance=ExtResource("6_3y0x1")]
+[node name="Fast Spawner" parent="SpawnerContainer" index="1" instance=ExtResource("6_3y0x1")]
 position = Vector2(307, 186)
 enemy_type_to_spawn = 1
 min_spawn_time = 3.0
 max_spawn_time = 7.0
 
-[node name="ZombieFast" parent="." index="8" instance=ExtResource("8_ljh26")]
-position = Vector2(1044, 256)
-
-[node name="ZombieSlow" parent="." index="9" instance=ExtResource("9_qcfdh")]
-position = Vector2(1125, 343)
-
-[connection signal="spawn" from="Slow zombie spawner" to="EnemyContainer" method="_on_spawner_spawn"]
-[connection signal="spawn" from="Fast Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
+[connection signal="spawn" from="SpawnerContainer/Slow zombie spawner" to="EnemyContainer" method="_on_spawner_spawn"]
+[connection signal="spawn" from="SpawnerContainer/Fast Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
