@@ -10,6 +10,9 @@ func _ready():
 	if isActive:
 		$Cooldown.start()
 
+func _process(_delta: float) -> void:
+	if Input.is_key_pressed(KEY_G):
+		buy()
 
 func _on_timer_timeout():
 	var b = bullet.instantiate() as bullet

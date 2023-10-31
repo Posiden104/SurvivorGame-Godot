@@ -47,14 +47,14 @@ metadata/_edit_lock_ = true
 script = ExtResource("3_7ej7l")
 bullet = ExtResource("4_ct7t2")
 damage_tracker = NodePath("stat_tracker_component")
-isBought = true
 cooldown = 1.0
 damage = 1.0
 
 [node name="Cooldown" type="Timer" parent="Weapons/Gun"]
 
-[node name="stat_tracker_component" parent="Weapons/Gun" instance=ExtResource("5_2sbn8")]
+[node name="stat_tracker_component" parent="Weapons/Gun" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
 stat_name = "Gun"
+weapon = NodePath("..")
 
 [node name="Overwatch" type="Node2D" parent="Weapons" node_paths=PackedStringArray("crosshair", "damage_tracker")]
 script = ExtResource("5_tlrr2")
@@ -79,20 +79,22 @@ one_shot = true
 visible = false
 scale = Vector2(0.05, 0.05)
 
-[node name="stat_tracker_component" parent="Weapons/Overwatch" instance=ExtResource("5_2sbn8")]
+[node name="stat_tracker_component" parent="Weapons/Overwatch" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
 stat_name = "Overwatch"
+weapon = NodePath("..")
 
 [node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swords", "damage_tracker")]
 script = ExtResource("7_e6uk4")
 swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
-swordsActive = 4
 damage_tracker = NodePath("stat_tracker_component")
 activeTime = 2.0
+isBought = true
 cooldown = 2.0
 damage = 1.0
 
-[node name="stat_tracker_component" parent="Weapons/Sword" instance=ExtResource("5_2sbn8")]
+[node name="stat_tracker_component" parent="Weapons/Sword" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
 stat_name = "Sword"
+weapon = NodePath("..")
 
 [node name="ActiveTimer" type="Timer" parent="Weapons/Sword"]
 wait_time = 2.0
@@ -151,8 +153,9 @@ damage = 5.0
 [node name="Cooldown" type="Timer" parent="Weapons/TimeBomb"]
 one_shot = true
 
-[node name="stat_tracker_component" parent="Weapons/TimeBomb" instance=ExtResource("5_2sbn8")]
+[node name="stat_tracker_component" parent="Weapons/TimeBomb" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
 stat_name = "Time Bomb"
+weapon = NodePath("..")
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true

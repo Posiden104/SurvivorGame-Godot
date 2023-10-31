@@ -71,7 +71,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_j3ynx")
 theme_override_font_sizes/font_size = 24
-text = "Restart"
+text = "Play Again"
 
 [node name="Spacer3" type="Control" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer"]
 layout_mode = 2
