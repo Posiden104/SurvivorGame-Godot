@@ -28,10 +28,10 @@ var has_health_remaining: bool = hp > 0
 
 func damage(dmg: float):
 	hp -= dmg
-	
+
 func heal(amt: float):
 	damage(-amt)
-	
+
 func kill():
 	died.emit()
-	Game.StatsManager.add_death(entity_name)
+	Game.STATS_MANAGER.add_death(entity_name)

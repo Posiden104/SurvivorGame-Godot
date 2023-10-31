@@ -9,7 +9,7 @@ class_name game_ui_class
 var clock_running: bool = false
 var clock_time: float
 var clock_text: String
-var clock_format: String = "%02d:%02d"
+static var clock_format: String = "%02d:%02d"
 
 func _process(delta: float) -> void:
 	if clock_running: 
@@ -51,9 +51,9 @@ func _on_clock_update_timer_timeout() -> void:
 	update_clock()
 
 func update_clock() -> void:
-	clock.set_text(format_time(clock_time))
+	clock.set_text(game_ui_class.format_time(clock_time))
 
-func format_time(time: float) -> String:
+static func format_time(time: float) -> String:
 	@warning_ignore("integer_division")
 	var minutes: int = int(time) / 60
 	var sec: int = int(time) % 60

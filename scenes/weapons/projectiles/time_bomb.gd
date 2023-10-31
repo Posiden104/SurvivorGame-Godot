@@ -11,7 +11,6 @@ func _ready():
 
 func _on_time_bomb_timer_timeout():
 	for e in enemies:
-		print(e)
 		hitbox.do_damage(e)
 	queue_free()
 
