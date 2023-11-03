@@ -2,7 +2,6 @@ extends Node2D
 
 class_name stat_tracker_component
 
-@export var stat_name: String
 @export var weapon: weapon_base
 
 var value: float
@@ -20,7 +19,7 @@ func get_stats(format: String) -> String:
 	var life = Game.UI.game_ui.clock_time - weapon.time_bought
 	var life_formatted = game_ui_class.format_time(life)
 	var dps = value / life
-	return format % [stat_name, format_number(value), life_formatted, format_number(dps)]
+	return format % [weapon.weapon_name, format_number(value), life_formatted, format_number(dps)]
 
 func format_number(val: float) -> String:
 	if fmod(val, 1.0) == 0:

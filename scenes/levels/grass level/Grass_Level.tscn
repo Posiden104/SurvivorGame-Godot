@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp7ckl280iie8"]
+[gd_scene load_steps=8 format=3 uid="uid://cp7ckl280iie8"]
 
 [ext_resource type="PackedScene" uid="uid://ogloqd2aef8e" path="res://scenes/levels/Base_Level.tscn" id="1_x027y"]
 [ext_resource type="Texture2D" uid="uid://jmmgalayjhp1" path="res://images/Background.jpg" id="2_70od3"]
-[ext_resource type="Script" path="res://scenes/levels/grass level/EnemyContainer.gd" id="3_pl3gu"]
 [ext_resource type="PackedScene" uid="uid://dhh7w6rc5mr6q" path="res://scenes/pickups/scrap.tscn" id="4_613y7"]
-[ext_resource type="Script" path="res://scenes/levels/grass level/ProjectileContainer.gd" id="4_amnd2"]
 [ext_resource type="PackedScene" uid="uid://cebwi4eryl6dt" path="res://scenes/pickups/magnet.tscn" id="5_o3t2n"]
 [ext_resource type="PackedScene" uid="uid://d2nh73ws0tria" path="res://scenes/spawners/spawner.tscn" id="6_3y0x1"]
 [ext_resource type="PackedScene" uid="uid://0xx5vmilyslu" path="res://scenes/entities/enemies/zombie_fast.tscn" id="8_ljh26"]
@@ -14,9 +12,6 @@
 
 [node name="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
 texture = ExtResource("2_70od3")
-
-[node name="EnemyContainer" parent="." index="1"]
-script = ExtResource("3_pl3gu")
 
 [node name="ZombieFast" parent="EnemyContainer" index="0" instance=ExtResource("8_ljh26")]
 position = Vector2(534, 205)
@@ -29,9 +24,6 @@ position = Vector2(452, 246)
 
 [node name="ZombieFast2" parent="EnemyContainer" index="3" instance=ExtResource("8_ljh26")]
 position = Vector2(416, 183)
-
-[node name="ProjectileContainer" parent="." index="2"]
-script = ExtResource("4_amnd2")
 
 [node name="Scrap" parent="ScrapContainer" index="0" instance=ExtResource("4_613y7")]
 position = Vector2(205, 366)

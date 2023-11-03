@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://hcyw6bbk65df"]
+
+[ext_resource type="Script" path="res://scenes/weapons/overwatch/overwatch.gd" id="1_d4sqq"]
+[ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="3_tmyf2"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="4_8kc52"]
+[ext_resource type="Texture2D" uid="uid://c2pfb7d33lfea" path="res://images/crosshair.png" id="5_1igvk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sas1s"]
+
+[node name="Overwatch" type="Node2D" node_paths=PackedStringArray("damage_tracker", "crosshair", "hitbox")]
+script = ExtResource("1_d4sqq")
+damage_tracker = NodePath("stat_tracker_component")
+crosshair = NodePath("Crosshair")
+hitbox = NodePath("Crosshair/HitboxComponent")
+activeTime = 5.0
+cooldown = 10.0
+damage = 10.0
+weapon_name = "Overwatch"
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TargetFailTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_tmyf2")]
+weapon = NodePath("..")
+
+[node name="Crosshair" type="Node2D" parent="."]
+
+[node name="HitboxComponent" parent="Crosshair" instance=ExtResource("4_8kc52")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair/HitboxComponent"]
+shape = SubResource("CircleShape2D_sas1s")
+
+[node name="OverwatchImage" type="Sprite2D" parent="Crosshair"]
+z_index = 1
+texture = ExtResource("5_1igvk")
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]
+[connection signal="timeout" from="TargetFailTimer" to="." method="_on_target_fail_timer_timeout"]

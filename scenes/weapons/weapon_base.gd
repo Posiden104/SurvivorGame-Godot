@@ -8,6 +8,7 @@ class_name weapon_base
 @export var cooldown: float
 @export var damage: float
 @export var time_bought: float
+@export var weapon_name: String
 
 func _ready():
 	$Cooldown.wait_time = cooldown
@@ -22,9 +23,10 @@ func deactivate():
 
 func buy():
 	level = 1
-	isActive = true
 	$Cooldown.start()
 	time_bought = Game.UI.game_ui.clock_time
+	isActive = true
+	visible = true
 	isBought = true
 	
 func level_up():

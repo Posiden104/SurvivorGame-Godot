@@ -1,16 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=13 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
-[ext_resource type="Script" path="res://scenes/entities/player/Gun_weapon.gd" id="3_7ej7l"]
-[ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapons/projectiles/bullet.tscn" id="4_ct7t2"]
-[ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="5_2sbn8"]
-[ext_resource type="Script" path="res://scenes/entities/player/Overwatch_weapon.gd" id="5_tlrr2"]
-[ext_resource type="PackedScene" uid="uid://bnpbf0b8y3acp" path="res://scenes/weapons/overwatch.tscn" id="6_d5gku"]
-[ext_resource type="Script" path="res://scenes/entities/player/Sword_weapon.gd" id="7_e6uk4"]
-[ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapons/projectiles/time_bomb.tscn" id="8_4ce41"]
-[ext_resource type="PackedScene" uid="uid://6gscvvpbebj6" path="res://scenes/weapons/sword.tscn" id="8_w8wtr"]
-[ext_resource type="Script" path="res://scenes/entities/player/TimeBomb_weapon.gd" id="9_46u1r"]
+[ext_resource type="Script" path="res://scenes/entities/player/weapon_manager.gd" id="3_8rcxh"]
+[ext_resource type="PackedScene" uid="uid://ci1nrhhb0b7v7" path="res://scenes/weapons/gun/gun.tscn" id="4_xn6bd"]
+[ext_resource type="PackedScene" uid="uid://hcyw6bbk65df" path="res://scenes/weapons/overwatch/overwatch.tscn" id="5_8tv1o"]
+[ext_resource type="PackedScene" uid="uid://dgmswhsj2tfgb" path="res://scenes/weapons/sword/sword.tscn" id="6_mmfi5"]
+[ext_resource type="PackedScene" uid="uid://dv2fjgf5wc2rf" path="res://scenes/weapons/time bomb/time_bomb.tscn" id="7_ito0s"]
 [ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="11_40iqt"]
 [ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="12_rc4aw"]
 [ext_resource type="PackedScene" uid="uid://vuiqm0uji78e" path="res://scenes/components/level_up_component.tscn" id="13_njqxd"]
@@ -21,13 +17,14 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jq8fw"]
 radius = 35.1283
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "level_manager") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "level_manager", "weapon_manager") groups=["player"]]
 collision_mask = 27
 motion_mode = 1
 script = ExtResource("1_emybq")
 health = NodePath("HealthComponent")
 hurtbox = NodePath("HurtboxComponent")
 level_manager = NodePath("level_up_component")
+weapon_manager = NodePath("weapon_manager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -41,121 +38,20 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Weapons" type="Node2D" parent="."]
+[node name="weapon_manager" type="Node2D" parent="."]
+script = ExtResource("3_8rcxh")
 
-[node name="Gun" type="Node2D" parent="Weapons" node_paths=PackedStringArray("damage_tracker")]
-script = ExtResource("3_7ej7l")
-bullet = ExtResource("4_ct7t2")
-damage_tracker = NodePath("stat_tracker_component")
-cooldown = 1.0
-damage = 1.0
-
-[node name="Cooldown" type="Timer" parent="Weapons/Gun"]
-
-[node name="stat_tracker_component" parent="Weapons/Gun" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
-stat_name = "Gun"
-weapon = NodePath("..")
-
-[node name="Overwatch" type="Node2D" parent="Weapons" node_paths=PackedStringArray("crosshair", "damage_tracker")]
-script = ExtResource("5_tlrr2")
-crosshair = NodePath("OverwatchCrosshair")
-damage_tracker = NodePath("stat_tracker_component")
-activeTime = 5.0
-cooldown = 10.0
-damage = 10.0
-
-[node name="Cooldown" type="Timer" parent="Weapons/Overwatch"]
-one_shot = true
-
-[node name="ActiveTimer" type="Timer" parent="Weapons/Overwatch"]
-wait_time = 2.0
-one_shot = true
-
-[node name="TargetFailTimer" type="Timer" parent="Weapons/Overwatch"]
-wait_time = 2.0
-one_shot = true
-
-[node name="OverwatchCrosshair" parent="Weapons/Overwatch" instance=ExtResource("6_d5gku")]
+[node name="Gun" parent="weapon_manager" instance=ExtResource("4_xn6bd")]
 visible = false
-scale = Vector2(0.05, 0.05)
 
-[node name="stat_tracker_component" parent="Weapons/Overwatch" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
-stat_name = "Overwatch"
-weapon = NodePath("..")
-
-[node name="Sword" type="Node2D" parent="Weapons" node_paths=PackedStringArray("swords", "damage_tracker")]
-script = ExtResource("7_e6uk4")
-swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
-damage_tracker = NodePath("stat_tracker_component")
-activeTime = 2.0
-isBought = true
-cooldown = 2.0
-damage = 1.0
-
-[node name="stat_tracker_component" parent="Weapons/Sword" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
-stat_name = "Sword"
-weapon = NodePath("..")
-
-[node name="ActiveTimer" type="Timer" parent="Weapons/Sword"]
-wait_time = 2.0
-one_shot = true
-
-[node name="Cooldown" type="Timer" parent="Weapons/Sword"]
-wait_time = 2.0
-one_shot = true
-
-[node name="Sword1" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
+[node name="Overwatch" parent="weapon_manager" instance=ExtResource("5_8tv1o")]
 visible = false
-position = Vector2(0, -41)
 
-[node name="Sword2" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
+[node name="Sword" parent="weapon_manager" instance=ExtResource("6_mmfi5")]
 visible = false
-position = Vector2(0, 41)
-rotation = 3.14159
 
-[node name="Sword3" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
+[node name="TimeBomb" parent="weapon_manager" instance=ExtResource("7_ito0s")]
 visible = false
-position = Vector2(41, 0)
-rotation = 1.5708
-
-[node name="Sword4" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
-visible = false
-position = Vector2(-41, 0)
-rotation = -1.5708
-
-[node name="Sword5" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
-visible = false
-position = Vector2(29, -29)
-rotation = 0.785398
-
-[node name="Sword6" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
-visible = false
-position = Vector2(-29, 29)
-rotation = -2.35619
-
-[node name="Sword7" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
-visible = false
-position = Vector2(-29, -29)
-rotation = -0.785398
-
-[node name="Sword8" parent="Weapons/Sword" instance=ExtResource("8_w8wtr")]
-visible = false
-position = Vector2(29, 29)
-rotation = 2.35619
-
-[node name="TimeBomb" type="Node2D" parent="Weapons" node_paths=PackedStringArray("damage_tracker")]
-script = ExtResource("9_46u1r")
-bomb_scene = ExtResource("8_4ce41")
-damage_tracker = NodePath("stat_tracker_component")
-cooldown = 20.0
-damage = 5.0
-
-[node name="Cooldown" type="Timer" parent="Weapons/TimeBomb"]
-one_shot = true
-
-[node name="stat_tracker_component" parent="Weapons/TimeBomb" node_paths=PackedStringArray("weapon") instance=ExtResource("5_2sbn8")]
-stat_name = "Time Bomb"
-weapon = NodePath("..")
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
@@ -183,13 +79,6 @@ metadata/_edit_lock_ = true
 [node name="level_up_component" parent="." instance=ExtResource("13_njqxd")]
 xp_to_next_level = 10
 
-[connection signal="timeout" from="Weapons/Gun/Cooldown" to="Weapons/Gun" method="_on_timer_timeout"]
-[connection signal="timeout" from="Weapons/Overwatch/Cooldown" to="Weapons/Overwatch" method="_on_cooldown_timeout"]
-[connection signal="timeout" from="Weapons/Overwatch/ActiveTimer" to="Weapons/Overwatch" method="_on_active_timer_timeout"]
-[connection signal="timeout" from="Weapons/Overwatch/TargetFailTimer" to="Weapons/Overwatch" method="_on_target_fail_timer_timeout"]
-[connection signal="timeout" from="Weapons/Sword/ActiveTimer" to="Weapons/Sword" method="_on_sword_timer_timeout"]
-[connection signal="timeout" from="Weapons/Sword/Cooldown" to="Weapons/Sword" method="_on_sword_cooldown_timeout"]
-[connection signal="timeout" from="Weapons/TimeBomb/Cooldown" to="Weapons/TimeBomb" method="_on_bomb_cooldown_timer_timeout"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_update" from="HealthComponent" to="." method="_on_health_component_health_update"]
 [connection signal="LEVEL_UP" from="level_up_component" to="." method="_on_level_up_component_level_up"]
