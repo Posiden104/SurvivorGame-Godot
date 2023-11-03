@@ -20,4 +20,4 @@ func _on_timer_timeout():
 	b.global_position = global_position
 	b.hitbox.damage = damage
 	b.hitbox.damage_dealt.connect(damage_tracker.add)
-	$"../..".shootGun(b)
+	MessageBus.add_projectile.emit(b)

@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func add(amt: float):
 	value += amt
-	print(stat_name + " " + str(value))
 	
 func get_stats(format: String) -> String:
 	if not weapon.isBought:
