@@ -18,4 +18,4 @@ func place_bomb():
 	b.fuse_time = fuse_time
 	b.global_position = global_position
 	b.hitbox.damage_dealt.connect(damage_tracker.add)
-	$"../../".placeTimeBomb(b)
+	MessageBus.add_projectile.emit(b)

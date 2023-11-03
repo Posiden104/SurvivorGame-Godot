@@ -11,6 +11,10 @@ var clock_time: float
 var clock_text: String
 static var clock_format: String = "%02d:%02d"
 
+func _ready() -> void:
+	MessageBus.player_health_changed.connect(update_health)
+	MessageBus.player_xp_changed.connect(update_xp)
+
 func _process(delta: float) -> void:
 	if clock_running: 
 		clock_time += delta

@@ -13,7 +13,6 @@ func restart_game():
 	game_ui.disable()
 	game_over_restart_ui.disable()
 	game_over_stats_ui.disable()
-	
 
 func start_game():
 	game_ui.enable(true, false)
@@ -22,7 +21,6 @@ func start_game():
 	game_over_stats_ui.disable()
 	Engine.time_scale = 1
 
-# TODO: move to global signal bus
 func game_over():
 	Engine.time_scale = 0
 	game_ui.disable()
@@ -32,9 +30,3 @@ func game_over():
 func stats_continue():
 	game_over_stats_ui.disable()
 	game_over_restart_ui.enable()
-
-func update_health(hp: float, max_hp = null):
-	game_ui.update_health(hp, max_hp)
-
-func update_xp(xp: float, max_xp = null):
-	game_ui.update_xp(xp, max_xp)

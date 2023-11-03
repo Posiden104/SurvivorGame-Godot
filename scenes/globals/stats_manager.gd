@@ -9,4 +9,3 @@ func add_death(entity: String):
 		deaths[entity] += 1
 	else :
 		deaths[entity] = 1
-	print(entity + ": " + str(deaths[entity]))

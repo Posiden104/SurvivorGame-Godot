@@ -68,12 +68,11 @@ position = Vector2(957, 494)
 
 [node name="Slow zombie spawner" parent="SpawnerContainer" index="0" instance=ExtResource("6_3y0x1")]
 position = Vector2(1026, 161)
+autostart = true
 
 [node name="Fast Spawner" parent="SpawnerContainer" index="1" instance=ExtResource("6_3y0x1")]
 position = Vector2(307, 186)
 enemy_type_to_spawn = 1
 min_spawn_time = 3.0
 max_spawn_time = 7.0
-
-[connection signal="spawn" from="SpawnerContainer/Slow zombie spawner" to="EnemyContainer" method="_on_spawner_spawn"]
-[connection signal="spawn" from="SpawnerContainer/Fast Spawner" to="EnemyContainer" method="_on_spawner_spawn"]
+autostart = true

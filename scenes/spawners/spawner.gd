@@ -10,10 +10,8 @@ var fast_zombie_scene: PackedScene = preload("res://scenes/entities/enemies/zomb
 @export var max_spawn_time: float = 5.0
 @export var autostart: bool = false
 
-signal spawn(enemyScene: PackedScene, location: Vector2)
 var spawnner_scene: PackedScene
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	match enemy_type_to_spawn:
 		enemyType.slow_zombie:
@@ -28,6 +26,8 @@ func startTimer():
 	$SpawnTimer.start()
 
 func _on_spawn_timer_timeout():
-	spawn.emit(spawnner_scene, global_position)
+	var e = spawnner_scene.instantiate()
+	e.global_position = global_position
+	MessageBus.spawn_enemy.emit(e)
 	startTimer()
 	
