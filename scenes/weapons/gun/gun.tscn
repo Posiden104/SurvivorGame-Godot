@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci1nrhhb0b7v7"]
+
+[ext_resource type="Script" path="res://scenes/weapons/gun/gun.gd" id="1_t2ju2"]
+[ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapon spawnables/bullet.tscn" id="2_gxduo"]
+[ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="3_1tysf"]
+
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("damage_tracker")]
+script = ExtResource("1_t2ju2")
+bullet = ExtResource("2_gxduo")
+damage_tracker = NodePath("stat_tracker_component")
+cooldown = 1.0
+damage = 1.0
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_1tysf")]
+weapon = NodePath("..")
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

@@ -1,1 +1,0 @@
-extends projectile_container

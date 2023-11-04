@@ -1,4 +1,4 @@
-extends Marker2D
+extends Node2D
 class_name enemy_container
 
 func _ready() -> void:
