@@ -2,23 +2,20 @@ extends Node2D
 
 class_name bullet
 
-@export var speed:int = 250
-
 @export var hitbox: hitbox_component
+@export var mover: mover_base
 
 var hitLimit: int = 1
 var bulletLife: float = 10.0
-var dir = Vector2.RIGHT
+var dir = Vector2.RIGHT :
+	set(value):
+		dir = value
+		mover.dir = value
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	$Timer.wait_time = bulletLife
 	$Timer.start()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	position += dir.normalized() * speed * delta
 
 func hitBody():
 	hitLimit -= 1

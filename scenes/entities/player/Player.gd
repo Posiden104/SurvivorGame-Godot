@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 class_name  player_script
 
+@export_category("components")
 @export var health: health_component
 @export var hurtbox: hurtbox_component
 @export var level_manager: level_up_component
 @export var weapon_manager: weapon_manager_class
 
+@export var starting_weapon: Enums.WEAPON
 @export var speed = 100.0
 var dir: Vector2 = Vector2.RIGHT
 
@@ -16,7 +18,7 @@ func _ready() -> void:
 	Game.Player = self
 	MessageBus.player_health_changed.emit(health.hp, health.max_hp)
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
-	weapon_manager.buy_weapon("sword")
+	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESCAPE"):

@@ -1,17 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgmswhsj2tfgb"]
+[gd_scene load_steps=5 format=3 uid="uid://dgmswhsj2tfgb"]
 
 [ext_resource type="Script" path="res://scenes/weapons/sword/sword.gd" id="1_l2c1p"]
 [ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="2_7ck74"]
+[ext_resource type="PackedScene" uid="uid://ysc8djc0dhxd" path="res://scenes/components/weapon components/rotation_move_component.tscn" id="2_bitux"]
 [ext_resource type="PackedScene" uid="uid://6gscvvpbebj6" path="res://scenes/weapon spawnables/sword.tscn" id="3_rfdus"]
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("swords", "damage_tracker")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("swords", "damage_tracker", "mover")]
 script = ExtResource("1_l2c1p")
 swords = [NodePath("Sword1"), NodePath("Sword2"), NodePath("Sword3"), NodePath("Sword4"), NodePath("Sword5"), NodePath("Sword6"), NodePath("Sword7"), NodePath("Sword8")]
 damage_tracker = NodePath("stat_tracker_component")
+mover = NodePath("rotation_move_component")
 activeTime = 2.0
 cooldown = 2.0
 damage = 1.0
-weapon_name = "Sword"
+weapon_name = 1
+
+[node name="rotation_move_component" parent="." instance=ExtResource("2_bitux")]
+enabled = false
+speed = 360.0
 
 [node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_7ck74")]
 weapon = NodePath("..")

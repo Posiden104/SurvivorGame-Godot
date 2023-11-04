@@ -10,7 +10,6 @@ bullet = ExtResource("2_gxduo")
 damage_tracker = NodePath("stat_tracker_component")
 cooldown = 1.0
 damage = 1.0
-weapon_name = "Gun"
 
 [node name="Cooldown" type="Timer" parent="."]
 

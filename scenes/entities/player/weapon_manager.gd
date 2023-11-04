@@ -8,8 +8,8 @@ var weapon_names: Array[String]
 
 func _ready() -> void:
 	for c in weapons:
-		weapon_names.push_back(c.weapon_name.to_snake_case())
-		
+		weapon_names.push_back(c.get_weapon_name().to_snake_case())
+	
 func get_weapon(weapon_name: String) -> weapon_base:
 	var idx = weapon_names.find(weapon_name.to_snake_case())
 	if idx == -1:
