@@ -10,6 +10,14 @@ class_name weapon_base
 @export var time_bought: float
 @export var weapon_name: Enums.WEAPON
 
+var cdr_percent: float
+var bonus_damage_percent: float
+var projectile_count: int
+
+@export_category("Leveling Up")
+@export var lvl_up_data: Array[weapon_level_up]
+
+
 func get_weapon_name() -> String:
 	return Enums.WEAPON.keys()[weapon_name]
 
