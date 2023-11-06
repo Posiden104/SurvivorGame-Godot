@@ -24,7 +24,7 @@ var projectile_count: float = 1.0:
 
 
 func get_weapon_name() -> String:
-	return Enums.WEAPON.keys()[weapon_name]
+	return Enums.get_weapon_name(weapon_name)
 
 func _ready():
 	$Cooldown.wait_time = cooldown
@@ -44,22 +44,23 @@ func buy():
 	visible = true
 	isBought = true
 	activate()
-	
-func level_up():
-	var zero_index_level_offset = 2 # lvl up data starts at 0, but starts applying at lv 2
-	level += 1
-	if lvl_up_data.size() <= level - zero_index_level_offset:
+
+func get_next_level_data() -> weapon_level_up:
+	if lvl_up_data.size() <= level or lvl_up_data.is_empty():
 		print("no more level up data!!")
 		print("max level reached!!")
+		return null
+	return lvl_up_data[level]
+
+func level_up():
+	if level == 0: 
+		buy()
 		return
-	var data = lvl_up_data[level - zero_index_level_offset]
+	var data = get_next_level_data()
+	if data == null: return
+	level += 1
 	var attrs = data.get_attributes()
 	var values = data.get_values()
-	if values.size() < attrs.size():
-		print("Fewer values than attributes!!")
-		print("Will set values to 1")
-		for i in attrs.size() - values.size():
-			values.push_back("1")
 	for i in attrs.size():
 		var new_val = get(attrs[i]) + float(values[i])
 		print("setting %s to %f" % [attrs[i], new_val])

@@ -54,6 +54,7 @@ func _on_health_component_health_update(new_hp) -> void:
 
 func _on_level_up_component_level_up(_new_level) -> void:
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
+	MessageBus.player_level_up.emit()
 
 func _on_health_component_died() -> void:
 	Game.game_over()

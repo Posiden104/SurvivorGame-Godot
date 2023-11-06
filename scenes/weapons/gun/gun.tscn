@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci1nrhhb0b7v7"]
+[gd_scene load_steps=10 format=3 uid="uid://ci1nrhhb0b7v7"]
 
 [ext_resource type="Script" path="res://scenes/weapons/gun/gun.gd" id="1_t2ju2"]
 [ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapon spawnables/bullet.tscn" id="2_gxduo"]
 [ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="3_1tysf"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon_level_up.gd" id="3_hejrl"]
 [ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="5_gs4fg"]
+
+[sub_resource type="Resource" id="Resource_eahfr"]
+script = ExtResource("3_hejrl")
+text = "Shoots bullets in a straight line."
+attributes = ""
+values = ""
 
 [sub_resource type="Resource" id="Resource_5c2gf"]
 script = ExtResource("3_hejrl")
@@ -27,11 +33,10 @@ values = "10"
 [node name="Gun" type="Node2D" node_paths=PackedStringArray("shooter", "damage_tracker")]
 script = ExtResource("1_t2ju2")
 shooter = NodePath("projectile_spawn_component")
-isBought = null
 cooldown = 1.0
 damage = 1.0
 damage_tracker = NodePath("stat_tracker_component")
-lvl_up_data = Array[ExtResource("3_hejrl")]([SubResource("Resource_5c2gf"), SubResource("Resource_jr38c"), SubResource("Resource_dmdnm")])
+lvl_up_data = Array[ExtResource("3_hejrl")]([SubResource("Resource_eahfr"), SubResource("Resource_5c2gf"), SubResource("Resource_jr38c"), SubResource("Resource_dmdnm")])
 
 [node name="Cooldown" type="Timer" parent="."]
 
