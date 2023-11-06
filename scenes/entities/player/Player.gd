@@ -12,8 +12,6 @@ class_name  player_script
 @export var speed = 100.0
 var dir: Vector2 = Vector2.RIGHT
 
-var level: int = 1
-
 func _ready() -> void:
 	Game.Player = self
 	MessageBus.player_health_changed.emit(health.hp, health.max_hp)
@@ -23,8 +21,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESCAPE"):
 		health.died.emit()
-	if Input.is_key_pressed(KEY_L):
+	if Input.is_action_just_pressed("CHEAT_level_up"):
 		level_manager.level_up()
+		weapon_manager.level_up_weapon(Enums.WEAPON.keys()[starting_weapon])
+	if Input.is_action_just_pressed("CHEAT_add_proj"):
+		weapon_manager.get_weapon(Enums.WEAPON.keys()[starting_weapon]).projectile_count += 1
 
 func _physics_process(_delta):
 	set_velocity(Input.get_vector("Left", "Right", "Up", "Down").normalized() * speed)
@@ -48,12 +49,12 @@ func getClosestEnemy() -> CharacterBody2D:
 			closest = e
 	return closest
 
-
 func _on_health_component_health_update(new_hp) -> void:
 	MessageBus.player_health_changed.emit(new_hp)
 
 func _on_level_up_component_level_up(_new_level) -> void:
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
+	MessageBus.player_level_up.emit()
 
 func _on_health_component_died() -> void:
 	Game.game_over()

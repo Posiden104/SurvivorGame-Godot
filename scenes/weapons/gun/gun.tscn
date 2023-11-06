@@ -1,19 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci1nrhhb0b7v7"]
+[gd_scene load_steps=10 format=3 uid="uid://ci1nrhhb0b7v7"]
 
 [ext_resource type="Script" path="res://scenes/weapons/gun/gun.gd" id="1_t2ju2"]
 [ext_resource type="PackedScene" uid="uid://bealsj7ifws7l" path="res://scenes/weapon spawnables/bullet.tscn" id="2_gxduo"]
 [ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="3_1tysf"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon_level_up.gd" id="3_hejrl"]
+[ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="5_gs4fg"]
 
-[node name="Gun" type="Node2D" node_paths=PackedStringArray("damage_tracker")]
+[sub_resource type="Resource" id="Resource_eahfr"]
+script = ExtResource("3_hejrl")
+text = "Shoots bullets in a straight line."
+attributes = ""
+values = ""
+
+[sub_resource type="Resource" id="Resource_5c2gf"]
+script = ExtResource("3_hejrl")
+text = "Projectile + 1"
+attributes = "projectile_count"
+values = "1"
+
+[sub_resource type="Resource" id="Resource_jr38c"]
+script = ExtResource("3_hejrl")
+text = "Damage  + 2"
+attributes = "damage"
+values = "2"
+
+[sub_resource type="Resource" id="Resource_dmdnm"]
+script = ExtResource("3_hejrl")
+text = "Damage + 10%"
+attributes = "bonus_damage_percent"
+values = "10"
+
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("shooter", "damage_tracker")]
 script = ExtResource("1_t2ju2")
-bullet = ExtResource("2_gxduo")
-damage_tracker = NodePath("stat_tracker_component")
+shooter = NodePath("projectile_spawn_component")
 cooldown = 1.0
 damage = 1.0
+damage_tracker = NodePath("stat_tracker_component")
+lvl_up_data = Array[ExtResource("3_hejrl")]([SubResource("Resource_eahfr"), SubResource("Resource_5c2gf"), SubResource("Resource_jr38c"), SubResource("Resource_dmdnm")])
 
 [node name="Cooldown" type="Timer" parent="."]
 
 [node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_1tysf")]
 weapon = NodePath("..")
+
+[node name="projectile_spawn_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("5_gs4fg")]
+weapon = NodePath("..")
+projectile_scene = ExtResource("2_gxduo")
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

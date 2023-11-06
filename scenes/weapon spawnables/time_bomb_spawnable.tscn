@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://jgqfb3u84kw0"]
+
+[ext_resource type="Script" path="res://scenes/weapon spawnables/time_bomb_spawnable.gd" id="1_n2jyr"]
+[ext_resource type="Texture2D" uid="uid://lggnikojqdmc" path="res://images/circle-empty.png" id="2_hg2u4"]
+[ext_resource type="Texture2D" uid="uid://c35wy5s7tfhxg" path="res://images/bomb.png" id="3_aqufk"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="4_yxikm"]
+[ext_resource type="PackedScene" uid="uid://bc8ja6bs2ajhy" path="res://scenes/components/weapon components/aoe_damage_component.tscn" id="5_7qljk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wnru2"]
+radius = 32.0
+
+[node name="time_bomb" type="Node2D" node_paths=PackedStringArray("aoe_damage", "hitbox")]
+script = ExtResource("1_n2jyr")
+aoe_damage = NodePath("aoe_damage_component")
+hitbox = NodePath("HitboxComponent")
+
+[node name="RangeVisual" type="Sprite2D" parent="."]
+modulate = Color(0.643137, 0.0431373, 0.0745098, 1)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("2_hg2u4")
+
+[node name="BombVisual" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_aqufk")
+
+[node name="TimeBombTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_yxikm")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_wnru2")
+
+[node name="aoe_damage_component" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("5_7qljk")]
+hitbox = NodePath("../HitboxComponent")
+
+[connection signal="timeout" from="TimeBombTimer" to="." method="_on_time_bomb_timer_timeout"]
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
+[connection signal="body_exited" from="HitboxComponent" to="." method="_on_hitbox_component_body_exited"]

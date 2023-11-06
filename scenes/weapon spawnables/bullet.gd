@@ -1,8 +1,7 @@
-extends Node2D
+extends spawnable_base
 
 class_name bullet
 
-@export var hitbox: hitbox_component
 @export var mover: mover_base
 
 var hitLimit: int = 1
@@ -16,6 +15,7 @@ var dir = Vector2.RIGHT :
 func _ready():
 	$Timer.wait_time = bulletLife
 	$Timer.start()
+	dir = Game.Player.dir
 
 func hitBody():
 	hitLimit -= 1

@@ -4,7 +4,6 @@ var target: CharacterBody2D
 var scale_max: float = 0.05
 var scale_min: float = 0.025
 
-@export var damage_tracker: stat_tracker_component
 @export var crosshair: Node2D
 @export var hitbox: hitbox_component # hitbox collision shape not used
 
