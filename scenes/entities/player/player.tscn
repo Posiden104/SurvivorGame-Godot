@@ -25,7 +25,7 @@ health = NodePath("HealthComponent")
 hurtbox = NodePath("HurtboxComponent")
 level_manager = NodePath("level_up_component")
 weapon_manager = NodePath("weapon_manager")
-starting_weapon = 1
+starting_weapon = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

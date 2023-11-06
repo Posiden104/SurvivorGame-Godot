@@ -7,15 +7,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sas1s"]
 
-[node name="Overwatch" type="Node2D" node_paths=PackedStringArray("damage_tracker", "crosshair", "hitbox")]
+[node name="Overwatch" type="Node2D" node_paths=PackedStringArray("crosshair", "hitbox", "damage_tracker")]
 script = ExtResource("1_d4sqq")
-damage_tracker = NodePath("stat_tracker_component")
 crosshair = NodePath("Crosshair")
 hitbox = NodePath("Crosshair/HitboxComponent")
 activeTime = 5.0
 cooldown = 10.0
 damage = 10.0
 weapon_name = 2
+damage_tracker = NodePath("stat_tracker_component")
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true

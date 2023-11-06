@@ -1,8 +1,6 @@
-extends Node2D
+extends spawnable_base
 
 class_name sword
-
-@export var hitbox: hitbox_component
 
 func set_enabled(val: bool):
 	hitbox.monitoring = val

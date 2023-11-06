@@ -16,8 +16,10 @@ func get_weapon(weapon_name: String) -> weapon_base:
 		return null
 	return get_child(idx)
 
-
 func buy_weapon(weapon_name: String):
 	var w = get_weapon(weapon_name)
-	if w:
-		w.buy()
+	if w: w.buy()
+
+func level_up_weapon(weapon_name: String):
+	var w = get_weapon(weapon_name)
+	if w: w.level_up()

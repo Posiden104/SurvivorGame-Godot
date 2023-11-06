@@ -1,21 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv2fjgf5wc2rf"]
+[gd_scene load_steps=5 format=3 uid="uid://dv2fjgf5wc2rf"]
 
 [ext_resource type="Script" path="res://scenes/weapons/time bomb/time_bomb.gd" id="1_gut32"]
-[ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapon spawnables/time_bomb.tscn" id="2_dw2fy"]
 [ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="3_t2jyg"]
+[ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="4_moodi"]
+[ext_resource type="PackedScene" uid="uid://jgqfb3u84kw0" path="res://scenes/weapon spawnables/time_bomb_spawnable.tscn" id="4_xae63"]
 
-[node name="TimeBomb" type="Node2D" node_paths=PackedStringArray("damage_tracker")]
+[node name="TimeBomb" type="Node2D" node_paths=PackedStringArray("shooter", "damage_tracker")]
 script = ExtResource("1_gut32")
-bomb_scene = ExtResource("2_dw2fy")
-damage_tracker = NodePath("stat_tracker_component")
+shooter = NodePath("projectile_spawn_component")
 cooldown = 20.0
 damage = 5.0
 weapon_name = 3
+damage_tracker = NodePath("stat_tracker_component")
+ignore_projectile_count = true
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_t2jyg")]
 weapon = NodePath("..")
+
+[node name="projectile_spawn_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("4_moodi")]
+weapon = NodePath("..")
+projectile_scene = ExtResource("4_xae63")
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_bomb_cooldown_timer_timeout"]

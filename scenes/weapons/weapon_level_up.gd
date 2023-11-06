@@ -7,8 +7,8 @@ class_name weapon_level_up
 @export var values: String
 
 
-func get_attributes() -> Array[String]:
-	return []
+func get_attributes() -> PackedStringArray:
+	return attributes.split(",")
 	
-func get_values() -> Array[String]:
-	return []
+func get_values() -> PackedStringArray:
+	return values.split(",")
