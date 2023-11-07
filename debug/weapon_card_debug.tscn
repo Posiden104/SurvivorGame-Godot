@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcc6s1dkpp8vg"]
+
+[ext_resource type="Theme" uid="uid://0pouaoitorwj" path="res://scenes/ui/themes/main_theme.tres" id="1_gog5a"]
+
+[node name="Panel" type="PanelContainer"]
+offset_right = 141.0
+offset_bottom = 73.0
+theme = ExtResource("1_gog5a")
+theme_type_variation = &"debug_card"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Weapon Name" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gun Lv. 2"
+
+[node name="Weapon Stats" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Damage: 1
+Cooldown: 1
+Is Active: 1
+Cdr %: 10%
+Bonus Dmg %: 10%
+Projectile Count: 2
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Buy Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Buy
+"
+
+[node name="Level Up Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Level Up"
