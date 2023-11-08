@@ -9,5 +9,5 @@ enum WEAPON {
 	TIME_BOMB
 }
 
-static func get_weapon_name(w: WEAPON) -> String:
+func get_weapon_name(w: WEAPON) -> String:
 	return WEAPON.keys()[w]

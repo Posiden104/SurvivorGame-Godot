@@ -17,6 +17,7 @@ func _ready() -> void:
 	MessageBus.player_health_changed.emit(health.hp, health.max_hp)
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
 	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
+	MessageBus.player_ready.emit(self)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESCAPE"):

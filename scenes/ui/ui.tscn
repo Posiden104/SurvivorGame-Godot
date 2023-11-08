@@ -8,13 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://b7sjbwe2qea3x" path="res://scenes/ui/level_up_ui.tscn" id="6_qp326"]
 [ext_resource type="PackedScene" uid="uid://c25atwubxqsp7" path="res://debug/weapon_debug_ui.tscn" id="7_s1xix"]
 
-[node name="ui" type="CanvasLayer" node_paths=PackedStringArray("game_start_ui", "game_ui", "game_over_restart_ui", "game_over_stats_ui", "level_up_ui")]
+[node name="ui" type="CanvasLayer" node_paths=PackedStringArray("game_start_ui", "game_ui", "game_over_restart_ui", "game_over_stats_ui", "level_up_ui", "debug_ui")]
 script = ExtResource("1_tcqui")
 game_start_ui = NodePath("GameStartUI")
 game_ui = NodePath("Game UI")
 game_over_restart_ui = NodePath("GameOverRestart")
 game_over_stats_ui = NodePath("game_over_stats")
 level_up_ui = NodePath("level_up_ui")
+debug_ui = NodePath("weapon_debug_ui")
 
 [node name="GameStartUI" parent="." instance=ExtResource("2_f8lbp")]
 visible = false
@@ -32,3 +33,5 @@ visible = false
 visible = false
 
 [node name="weapon_debug_ui" parent="." instance=ExtResource("7_s1xix")]
+visible = false
+offset_top = -250.0

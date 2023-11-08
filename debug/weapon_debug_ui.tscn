@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c25atwubxqsp7"]
+[gd_scene load_steps=3 format=3 uid="uid://c25atwubxqsp7"]
 
+[ext_resource type="Script" path="res://debug/weapon_debug_ui.gd" id="1_caoyi"]
 [ext_resource type="PackedScene" uid="uid://dcc6s1dkpp8vg" path="res://debug/weapon_card_debug.tscn" id="1_piphl"]
 
-[node name="weapon_debug_ui" type="Control"]
+[node name="weapon_debug_ui" type="Control" node_paths=PackedStringArray("card_h_box")]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 3
 anchors_preset = 12
@@ -13,6 +14,9 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 8
+script = ExtResource("1_caoyi")
+weapon_card_debug = ExtResource("1_piphl")
+card_h_box = NodePath("MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/Card Container")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -44,14 +48,29 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Card Container" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
 
-[node name="Panel" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_piphl")]
+[node name="Button Container" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Projectile Button" type="Button" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/Button Container"]
+layout_mode = 2
+text = "Add Projectile"
+
+[node name="Cdr Button" type="Button" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/Button Container"]
+layout_mode = 2
+text = "Add 1% CDR"
+
+[node name="Damage Button" type="Button" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/Button Container"]
+layout_mode = 2
+text = "Add 1% 
+Bonus Damage"
 
 [node name="HScrollBar" type="HScrollBar" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
