@@ -9,14 +9,14 @@ class_name projectile_spawn_component
 var to_spawn: int
 
 func shoot():
-	to_spawn = int(weapon.projectile_count)
+	to_spawn = int(weapon.get_projectile_count())
 	spawn()
 
 func spawn():
 	var projectile = projectile_scene.instantiate()
 	projectile.weapon = weapon
 	projectile.global_position = global_position
-	projectile.hitbox.damage = weapon.damage
+	projectile.hitbox.damage = weapon.get_damage()
 	projectile.hitbox.damage_dealt.connect(weapon.damage_tracker.add)
 	MessageBus.add_projectile.emit(projectile)
 	to_spawn -= 1

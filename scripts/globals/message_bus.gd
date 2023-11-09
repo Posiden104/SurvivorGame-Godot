@@ -9,3 +9,6 @@ signal player_level_up(level: int)
 # Level related signals
 signal add_projectile(projectile_scene)
 signal spawn_enemy(enemy)
+
+# Weapon Signals
+signal global_bonus_changed(cdr: float, damage: float, proj: int)

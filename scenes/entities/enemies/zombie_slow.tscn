@@ -10,15 +10,15 @@
 radius = 16.0
 height = 44.0
 
-[node name="ZombieSlow" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "hitbox") groups=["enemies"]]
+[node name="ZombieSlow" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health", "hurtbox") groups=["enemies"]]
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_5gg5j")
-health = NodePath("HealthComponent")
-hurtbox = NodePath("HurtboxComponent")
 hitbox = NodePath("HitboxComponent")
 speed = 45.0
+health = NodePath("HealthComponent")
+hurtbox = NodePath("HurtboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rj57t")

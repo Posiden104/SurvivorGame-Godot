@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://0pouaoitorwj" path="res://scenes/ui/themes/main_theme.tres" id="1_gog5a"]
 [ext_resource type="Script" path="res://debug/weapon_card_debug.gd" id="2_kedj0"]
 
-[node name="weapon_card_debug" type="PanelContainer" node_paths=PackedStringArray("weapon_name", "weapon_stats")]
+[node name="weapon_card_debug" type="PanelContainer" node_paths=PackedStringArray("weapon_name", "weapon_stats", "action_btn")]
 offset_right = 141.0
 offset_bottom = 73.0
 theme = ExtResource("1_gog5a")
@@ -11,6 +11,7 @@ theme_type_variation = &"debug_card"
 script = ExtResource("2_kedj0")
 weapon_name = NodePath("MarginContainer/VBoxContainer/Weapon Name")
 weapon_stats = NodePath("MarginContainer/VBoxContainer/Weapon Stats")
+action_btn = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Action Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -32,23 +33,15 @@ theme_override_font_sizes/font_size = 10
 text = "Damage: 1
 Cooldown: 1
 Is Active: 1
-Cdr %: 10%
-Bonus Dmg %: 10%
 Projectile Count: 2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Buy Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Action Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Buy
 "
 
-[node name="Level Up Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Level Up"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Buy Button" to="." method="_on_buy_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Level Up Button" to="." method="_on_level_up_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Action Button" to="." method="_on_action_button_pressed"]
