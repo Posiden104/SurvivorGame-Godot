@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ogloqd2aef8e"]
+[gd_scene load_steps=6 format=3 uid="uid://ogloqd2aef8e"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_7iis2"]
 [ext_resource type="Script" path="res://scenes/levels/EnemyContainer.gd" id="2_y88t8"]
 [ext_resource type="Script" path="res://scenes/levels/ProjectileContainer.gd" id="3_8yje1"]
 [ext_resource type="PackedScene" uid="uid://co4b3ayy6bk2f" path="res://scenes/entities/player/player.tscn" id="4_eryxj"]
+[ext_resource type="Script" path="res://scenes/levels/ScrapContainer.gd" id="4_m3w4x"]
 
-[node name="Game_Base" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="Game_Base" type="Node2D"]
 script = ExtResource("1_7iis2")
-player = NodePath("Player")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -29,8 +29,11 @@ script = ExtResource("2_y88t8")
 script = ExtResource("3_8yje1")
 
 [node name="ScrapContainer" type="Marker2D" parent="."]
+z_index = -1
+script = ExtResource("4_m3w4x")
 
 [node name="PickupContainer" type="Marker2D" parent="."]
+z_index = -1
 
 [node name="SpawnerContainer" type="Marker2D" parent="."]
 

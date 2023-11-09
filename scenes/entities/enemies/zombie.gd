@@ -24,6 +24,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _on_health_component_died():
+	scrap_spawner.call_deferred("try_spawn")
 	queue_free()
 
 func _on_hitbox_component_body_entered(body: Node2D) -> void:
