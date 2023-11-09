@@ -46,8 +46,7 @@ func buy():
 
 func get_next_level_data() -> weapon_level_up:
 	if lvl_up_data.size() <= level or lvl_up_data.is_empty():
-		print("no more level up data!!")
-		print("max level reached!!")
+		print("max level reached for %s" % get_weapon_name())
 		maxed = true
 		return null
 	return lvl_up_data[level]

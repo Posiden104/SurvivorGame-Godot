@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://civf2v7v2gn7c"]
+[gd_scene load_steps=8 format=3 uid="uid://civf2v7v2gn7c"]
 
 [ext_resource type="Texture2D" uid="uid://rwn08jqhi43e" path="res://images/Zombie.png" id="1_3cmdp"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/zombie.gd" id="1_5gg5j"]
 [ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="3_1o7ss"]
 [ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="4_k8vnn"]
 [ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="5_6mjgr"]
+[ext_resource type="PackedScene" uid="uid://baucv863t1m0w" path="res://scenes/components/scrap_spawner_component.tscn" id="6_xcr3q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rj57t"]
 radius = 16.0
 height = 44.0
 
-[node name="ZombieSlow" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health", "hurtbox") groups=["enemies"]]
+[node name="ZombieSlow" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health", "hurtbox", "scrap_spawner") groups=["enemies"]]
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
@@ -19,6 +20,7 @@ hitbox = NodePath("HitboxComponent")
 speed = 45.0
 health = NodePath("HealthComponent")
 hurtbox = NodePath("HurtboxComponent")
+scrap_spawner = NodePath("scrap_spawner_component")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rj57t")
@@ -48,3 +50,6 @@ has_damage_cooldown = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 scale = Vector2(1.1, 1.1)
 shape = SubResource("CapsuleShape2D_rj57t")
+
+[node name="scrap_spawner_component" parent="." instance=ExtResource("6_xcr3q")]
+spawn_chance = 0.45
