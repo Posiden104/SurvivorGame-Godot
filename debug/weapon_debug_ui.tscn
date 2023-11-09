@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://c25atwubxqsp7"]
+
+[ext_resource type="Script" path="res://debug/weapon_debug_ui.gd" id="1_caoyi"]
+[ext_resource type="PackedScene" uid="uid://dcc6s1dkpp8vg" path="res://debug/weapon_card_debug.tscn" id="1_piphl"]
+[ext_resource type="Theme" uid="uid://0pouaoitorwj" path="res://scenes/ui/themes/main_theme.tres" id="3_5gqhh"]
+
+[node name="weapon_debug_ui" type="MarginContainer" node_paths=PackedStringArray("card_h_box", "globals_card_label")]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("3_5gqhh")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_caoyi")
+weapon_card_debug = ExtResource("1_piphl")
+card_h_box = NodePath("PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container")
+globals_card_label = NodePath("PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/Weapon Stats")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Buttons Container" type="VBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Projectile Button" type="Button" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Buttons Container"]
+layout_mode = 2
+text = "Add Projectile"
+
+[node name="Cdr Button" type="Button" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Buttons Container"]
+layout_mode = 2
+text = "Add 1% CDR"
+
+[node name="Damage Button" type="Button" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Buttons Container"]
+layout_mode = 2
+text = "Add 1% 
+Bonus Damage"
+
+[node name="Card Container" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+
+[node name="Global Stats" type="PanelContainer" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container"]
+layout_mode = 2
+theme = ExtResource("3_5gqhh")
+theme_type_variation = &"debug_card"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer"]
+layout_mode = 2
+
+[node name="Weapon Name" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Globals"
+
+[node name="Weapon Stats" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Cdr: 10%
+Bonus Dmg: 10%
+Bonus Projectile Count: 2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CDR Button" type="Button" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Cdr 1%
+"
+
+[node name="Dmg Button" type="Button" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Dmg 1%"
+
+[node name="Proj Button" type="Button" parent="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Proj +1"
+
+[connection signal="pressed" from="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer/CDR Button" to="." method="_on_cdr_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer/Dmg Button" to="." method="_on_dmg_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer/Proj Button" to="." method="_on_proj_button_pressed"]

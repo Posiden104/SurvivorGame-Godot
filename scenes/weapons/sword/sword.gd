@@ -6,11 +6,10 @@ extends active_weapon_base
 func set_active(val: bool):
 	isActive = val
 	mover.enabled = val
-	if projectile_count > swords.size():
-		projectile_count = swords.size()
-	for i in projectile_count:
+	var num_swords = min(swords.size(), int(get_projectile_count()))
+	for i in num_swords:
 		swords[i].set_enabled(val)
-		swords[i].hitbox.damage = 1
+		swords[i].hitbox.damage = get_damage()
 
 func activate():
 	set_active(true)

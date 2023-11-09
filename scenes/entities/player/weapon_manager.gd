@@ -4,6 +4,10 @@ class_name weapon_manager_class
 
 @onready var weapons = get_children()
 
+var cdr_percent: float = 1.0
+var bonus_damage_percent: float = 1.0
+var bonus_projectile: float = 0.0
+
 var weapon_names: Array[String]
 
 func _ready() -> void:

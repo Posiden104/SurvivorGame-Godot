@@ -1,7 +1,5 @@
-extends CharacterBody2D
+extends Entity
 
-@export var health: health_component
-@export var hurtbox: hurtbox_component
 @export var hitbox: hitbox_component
 @export var speed:float = 50
 

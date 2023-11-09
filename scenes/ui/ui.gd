@@ -7,9 +7,17 @@ class_name ui_script
 @export var game_over_restart_ui: game_over_restart_ui_class
 @export var game_over_stats_ui: game_over_stats_ui_class
 @export var level_up_ui: level_up_ui_class
+@export var debug_ui: Control
+
+var show_debug: bool = false
 
 func _ready() -> void:
 	MessageBus.player_level_up.connect(level_up)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("debug"):
+		debug_ui.visible = not show_debug
+		show_debug = not show_debug
 
 func restart_game():
 	Engine.time_scale = 0

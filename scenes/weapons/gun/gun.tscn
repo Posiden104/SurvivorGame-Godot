@@ -28,7 +28,7 @@ values = "2"
 script = ExtResource("3_hejrl")
 text = "Damage + 10%"
 attributes = "bonus_damage_percent"
-values = "10"
+values = "0.1"
 
 [node name="Gun" type="Node2D" node_paths=PackedStringArray("shooter", "damage_tracker")]
 script = ExtResource("1_t2ju2")

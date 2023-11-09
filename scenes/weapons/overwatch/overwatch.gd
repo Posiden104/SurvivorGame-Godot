@@ -1,6 +1,6 @@
 extends active_weapon_base
 
-var target: CharacterBody2D
+var target: Entity
 var scale_max: float = 0.05
 var scale_min: float = 0.025
 
@@ -23,14 +23,19 @@ func _process(_delta):
 			crosshair.scale = Vector2(scaleVal, scaleVal)
 
 func activate():
-	hitbox.damage = damage
+	hitbox.damage = get_damage()
 	if acquire_target():
 		isActive = true
 		crosshair.global_position = target.global_position
 		crosshair.visible = true
 		$ActiveTimer.start()
+		target.health.died.connect(target_fail)
 	else:
+		target_fail()
+
+func target_fail():
 #		print("overwatch - target fail")
+		crosshair.visible = false
 		$ActiveTimer.stop()
 		$Cooldown.stop()
 		$TargetFailTimer.start()

@@ -1,10 +1,7 @@
-extends CharacterBody2D
+extends Entity
 
 class_name  player_script
 
-@export_category("components")
-@export var health: health_component
-@export var hurtbox: hurtbox_component
 @export var level_manager: level_up_component
 @export var weapon_manager: weapon_manager_class
 
@@ -17,6 +14,7 @@ func _ready() -> void:
 	MessageBus.player_health_changed.emit(health.hp, health.max_hp)
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
 	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
+	MessageBus.player_ready.emit(self)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESCAPE"):
@@ -37,11 +35,11 @@ func gather_scrap():
 	level_manager.add_xp(1)
 	MessageBus.player_xp_changed.emit(level_manager.xp)
 
-func getClosestEnemy() -> CharacterBody2D:
-	var closest: CharacterBody2D = null
+func getClosestEnemy() -> Entity:
+	var closest: Entity = null
 	var shortestDist: float = 2147483647.0
 	var d: float
-	var enemies = get_tree().get_nodes_in_group("enemies") as Array[CharacterBody2D]
+	var enemies = get_tree().get_nodes_in_group("enemies") as Array[Entity]
 	for e in enemies:
 		d = (e.get_position() - global_position).length()
 		if d < shortestDist:
