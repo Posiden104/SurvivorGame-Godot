@@ -2,11 +2,18 @@ extends Node2D
 
 class_name projectile_spawn_component
 
+signal spawned(projectile)
+
 @export var weapon: weapon_base
 @onready var spawn_delay: Timer = $SpawnDelay
 
 @export var projectile_scene: PackedScene
+@export var connect_to_weapon: bool = false
 var to_spawn: int
+var callback: Callable
+
+func set_spawn_delay(time: float):
+	spawn_delay.wait_time = time
 
 func shoot():
 	to_spawn = int(weapon.get_projectile_count())
@@ -18,7 +25,12 @@ func spawn():
 	projectile.global_position = global_position
 	projectile.hitbox.damage = weapon.get_damage()
 	projectile.hitbox.damage_dealt.connect(weapon.damage_tracker.add)
-	MessageBus.add_projectile.emit(projectile)
+	if callback:
+		callback.call(projectile)
+	if connect_to_weapon:
+		spawned.emit(projectile)
+	else:
+		MessageBus.add_projectile.emit(projectile)
 	to_spawn -= 1
 	if to_spawn > 0:
 		spawn_delay.start()

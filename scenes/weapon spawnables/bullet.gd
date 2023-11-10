@@ -2,8 +2,6 @@ extends spawnable_base
 
 class_name bullet
 
-@export var mover: mover_base
-
 var hitLimit: int = 1
 var bulletLife: float = 10.0
 var dir = Vector2.RIGHT :
@@ -15,7 +13,6 @@ var dir = Vector2.RIGHT :
 func _ready():
 	$Timer.wait_time = bulletLife
 	$Timer.start()
-	dir = Game.Player.dir
 
 func hitBody():
 	hitLimit -= 1

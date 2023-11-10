@@ -11,10 +11,12 @@ var dir: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	Game.Player = self
+	
 	MessageBus.player_health_changed.emit(health.hp, health.max_hp)
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
-	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
 	MessageBus.player_ready.emit(self)
+	
+	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESCAPE"):

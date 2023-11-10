@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8jaanc3p2264"]
+
+[ext_resource type="Script" path="res://scenes/weapons/spiral gun/spiral gun.gd" id="1_f2yjr"]
+[ext_resource type="PackedScene" uid="uid://c0i6nfke33syw" path="res://scenes/weapon spawnables/spiral_bullet.tscn" id="2_3kxpa"]
+[ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="2_cnkke"]
+[ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="3_mgujf"]
+
+[node name="spiral gun" type="Node2D" node_paths=PackedStringArray("spawner", "damage_tracker")]
+script = ExtResource("1_f2yjr")
+spawner = NodePath("projectile_spawn_component")
+cooldown = 4.0
+damage = 2.0
+weapon_name = 4
+damage_tracker = NodePath("stat_tracker_component")
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[node name="projectile_spawn_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_cnkke")]
+weapon = NodePath("..")
+projectile_scene = ExtResource("2_3kxpa")
+connect_to_weapon = true
+
+[node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_mgujf")]
+weapon = NodePath("..")
+
+[node name="Projectile Container" type="Node2D" parent="."]
