@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0i6nfke33syw"]
+
+[ext_resource type="Script" path="res://scenes/weapon spawnables/spiral_bullet.gd" id="1_lvt5n"]
+[ext_resource type="Texture2D" uid="uid://d253x2mgt68yk" path="res://images/circle-full.png" id="2_e2uuj"]
+[ext_resource type="PackedScene" uid="uid://bqs254vxxfpvc" path="res://scenes/components/weapon components/velocity_move_component.tscn" id="2_jv15y"]
+[ext_resource type="PackedScene" uid="uid://ysc8djc0dhxd" path="res://scenes/components/weapon components/rotation_move_component.tscn" id="3_b3dwq"]
+[ext_resource type="PackedScene" uid="uid://kx5apxaalls5" path="res://scenes/components/hitbox_component.tscn" id="3_ri8hm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqpg2"]
+radius = 5.0
+
+[node name="spiral_bullet" type="Node2D" node_paths=PackedStringArray("mover", "hitbox")]
+script = ExtResource("1_lvt5n")
+mover = NodePath("ImageContainer/velocity_move_component")
+hitbox = NodePath("ImageContainer/HitboxComponent")
+
+[node name="rotation_move_component" parent="." instance=ExtResource("3_b3dwq")]
+speed = 180.0
+
+[node name="ImageContainer" type="Node2D" parent="."]
+
+[node name="velocity_move_component" parent="ImageContainer" instance=ExtResource("2_jv15y")]
+speed = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ImageContainer"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_e2uuj")
+
+[node name="HitboxComponent" parent="ImageContainer" instance=ExtResource("3_ri8hm")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImageContainer/HitboxComponent"]
+shape = SubResource("CircleShape2D_qqpg2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ImageContainer/HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=14 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://hcyw6bbk65df" path="res://scenes/weapons/overwatch/overwatch.tscn" id="5_8tv1o"]
 [ext_resource type="PackedScene" uid="uid://dgmswhsj2tfgb" path="res://scenes/weapons/sword/sword.tscn" id="6_mmfi5"]
 [ext_resource type="PackedScene" uid="uid://dv2fjgf5wc2rf" path="res://scenes/weapons/time bomb/time_bomb.tscn" id="7_ito0s"]
+[ext_resource type="PackedScene" uid="uid://c8jaanc3p2264" path="res://scenes/weapons/spiral gun/spiral gun.tscn" id="8_0y4xc"]
 [ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="11_40iqt"]
 [ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="12_rc4aw"]
 [ext_resource type="PackedScene" uid="uid://vuiqm0uji78e" path="res://scenes/components/level_up_component.tscn" id="13_njqxd"]
@@ -23,7 +24,7 @@ motion_mode = 1
 script = ExtResource("1_emybq")
 level_manager = NodePath("level_up_component")
 weapon_manager = NodePath("weapon_manager")
-starting_weapon = 1
+starting_weapon = 4
 health = NodePath("HealthComponent")
 hurtbox = NodePath("weapon_manager/Sword/Sword2/HitboxComponent")
 
@@ -54,6 +55,9 @@ visible = false
 [node name="TimeBomb" parent="weapon_manager" instance=ExtResource("7_ito0s")]
 visible = false
 
+[node name="spiral gun" parent="weapon_manager" instance=ExtResource("8_0y4xc")]
+visible = false
+
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
 visible = false
@@ -79,6 +83,8 @@ metadata/_edit_lock_ = true
 
 [node name="level_up_component" parent="." instance=ExtResource("13_njqxd")]
 xp_to_next_level = 10
+
+[node name="Player Spawnable Contianer" type="Node2D" parent="."]
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_update" from="HealthComponent" to="." method="_on_health_component_health_update"]

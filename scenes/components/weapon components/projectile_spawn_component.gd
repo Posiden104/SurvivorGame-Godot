@@ -6,6 +6,7 @@ class_name projectile_spawn_component
 @onready var spawn_delay: Timer = $SpawnDelay
 
 @export var projectile_scene: PackedScene
+@export var spawn_on_player: bool = false
 var to_spawn: int
 
 func shoot():
@@ -18,7 +19,10 @@ func spawn():
 	projectile.global_position = global_position
 	projectile.hitbox.damage = weapon.get_damage()
 	projectile.hitbox.damage_dealt.connect(weapon.damage_tracker.add)
-	MessageBus.add_projectile.emit(projectile)
+	if spawn_on_player:
+		MessageBus.player_spawn_object.emit(projectile)
+	else:
+		MessageBus.add_projectile.emit(projectile)
 	to_spawn -= 1
 	if to_spawn > 0:
 		spawn_delay.start()
