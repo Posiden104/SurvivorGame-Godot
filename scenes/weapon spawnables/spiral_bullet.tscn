@@ -9,10 +9,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqpg2"]
 radius = 5.0
 
-[node name="spiral_bullet" type="Node2D" node_paths=PackedStringArray("mover", "hitbox")]
+[node name="spiral_bullet" type="Node2D" node_paths=PackedStringArray("hitbox", "mover")]
 script = ExtResource("1_lvt5n")
-mover = NodePath("ImageContainer/velocity_move_component")
 hitbox = NodePath("ImageContainer/HitboxComponent")
+mover = NodePath("ImageContainer/velocity_move_component")
 
 [node name="rotation_move_component" parent="." instance=ExtResource("3_b3dwq")]
 speed = 180.0

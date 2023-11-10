@@ -8,7 +8,6 @@ class_name  player_script
 @export var starting_weapon: Enums.WEAPON
 @export var speed = 100.0
 var dir: Vector2 = Vector2.RIGHT
-@onready var spawn_container = $"Player Spawnable Contianer"
 
 func _ready() -> void:
 	Game.Player = self
@@ -16,7 +15,6 @@ func _ready() -> void:
 	MessageBus.player_health_changed.emit(health.hp, health.max_hp)
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
 	MessageBus.player_ready.emit(self)
-	MessageBus.player_spawn_object.connect(spawn_container.add_child)
 	
 	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
 

@@ -1,9 +1,6 @@
 extends spawnable_base
 
 class_name spiral_bullet
-
-@export var mover: mover_base
-
 var hitLimit: int = 5
 var bulletLife: float = 5
 var dir = Vector2.RIGHT

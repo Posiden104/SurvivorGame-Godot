@@ -7,7 +7,8 @@ enum WEAPON {
 	SWORD,
 	OVERWATCH,
 	TIME_BOMB,
-	SPIRAL_GUN
+	SPIRAL_GUN,
+	SHOTGUN
 }
 
 func get_weapon_name(w: WEAPON) -> String:
