@@ -13,10 +13,12 @@ var stats_format: String = "Damage: %.2f\nCooldown: %.2fs\nIs Active: %s\nProjec
 func _ready() -> void:
 	if weapon.isBought:
 		action_btn.text = "Level Up"
-	calc_stats()
+	call_deferred("calc_stats")
 	MessageBus.player_level_up.connect(calc_stats)
 
 func calc_stats():
+	if weapon.isBought:
+		action_btn.text = "Level Up"
 	weapon_name.text = "%s Lv.%d" % [weapon.get_weapon_name(), weapon.level]
 	var is_active: String = "true" if weapon.isActive else "false"
 	var txt: String = stats_format % [weapon.damage, weapon.cooldown, is_active, weapon.projectile_count, weapon.cdr_percent, weapon.bonus_damage_percent]
