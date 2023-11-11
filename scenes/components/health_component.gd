@@ -3,7 +3,7 @@ extends Node2D
 class_name health_component
 
 signal died
-signal health_update(new_hp: float)
+signal health_update(old_hp: float, new_hp: float)
 
 @export var entity_name: String
 
@@ -17,7 +17,7 @@ signal health_update(new_hp: float)
 	set(value):
 		prev_hp = hp
 		hp = clampf(value, 0, max_hp)
-		health_update.emit(hp)
+		health_update.emit(prev_hp, hp)
 		if hp <= 0.0 and not has_died:
 			kill()
 

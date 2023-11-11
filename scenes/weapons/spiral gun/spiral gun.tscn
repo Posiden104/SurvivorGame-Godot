@@ -12,6 +12,8 @@ cooldown = 4.0
 damage = 2.0
 weapon_name = 4
 damage_tracker = NodePath("stat_tracker_component")
+projectile_hitLimit = 2
+projectile_bulletLife = 3.0
 
 [node name="Cooldown" type="Timer" parent="."]
 

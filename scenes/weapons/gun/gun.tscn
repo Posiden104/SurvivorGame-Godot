@@ -36,6 +36,7 @@ shooter = NodePath("projectile_spawn_component")
 cooldown = 1.0
 damage = 1.0
 damage_tracker = NodePath("stat_tracker_component")
+projectile_bulletLife = 10.0
 lvl_up_data = Array[ExtResource("3_hejrl")]([SubResource("Resource_eahfr"), SubResource("Resource_5c2gf"), SubResource("Resource_jr38c"), SubResource("Resource_dmdnm")])
 
 [node name="Cooldown" type="Timer" parent="."]
