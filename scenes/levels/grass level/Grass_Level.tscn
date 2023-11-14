@@ -23,10 +23,10 @@ position = Vector2(449, 231)
 position = Vector2(377, 170)
 
 [node name="ZombieSlow" parent="EnemyContainer" index="3" instance=ExtResource("9_qcfdh")]
-position = Vector2(781, 195)
+position = Vector2(709, 212)
 
 [node name="ZombieSlow2" parent="EnemyContainer" index="4" instance=ExtResource("9_qcfdh")]
-position = Vector2(874, 206)
+position = Vector2(804, 267)
 
 [node name="Scrap" parent="ScrapContainer" index="0" instance=ExtResource("4_613y7")]
 position = Vector2(205, 366)

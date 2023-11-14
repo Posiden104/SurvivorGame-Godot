@@ -13,7 +13,7 @@ func _ready():
 	hitbox.damage_ready.connect(_on_hitbox_component_damage_ready)
 	hitbox.body_entered.connect(_on_hitbox_component_body_entered)
 	hitbox.body_exited.connect(_on_hitbox_component_body_exited)
-#	sprite.material.shader_parameter["active"] = false
+	sprite.material.set("shader_parameter/active", false)
 
 func _physics_process(_delta):
 	if Engine.time_scale == 0:
