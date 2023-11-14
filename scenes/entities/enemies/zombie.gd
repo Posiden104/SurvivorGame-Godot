@@ -9,9 +9,11 @@ var body_to_damage: Node2D
 
 func _ready():
 	health.died.connect(_on_health_component_died)
+	health.health_update.connect(_on_health_component_health_update)
 	hitbox.damage_ready.connect(_on_hitbox_component_damage_ready)
 	hitbox.body_entered.connect(_on_hitbox_component_body_entered)
 	hitbox.body_exited.connect(_on_hitbox_component_body_exited)
+	sprite.material.set("shader_parameter/active", false)
 
 func _physics_process(_delta):
 	if Engine.time_scale == 0:
@@ -22,6 +24,10 @@ func _physics_process(_delta):
 	v = v.normalized() * speed
 	set_velocity(v)
 	move_and_slide()
+
+func _on_health_component_health_update(old_hp, new_hp):
+	if old_hp > new_hp:
+		animation_player.play("hurt")
 
 func _on_health_component_died():
 	scrap_spawner.call_deferred("try_spawn")

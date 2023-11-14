@@ -49,7 +49,9 @@ func getClosestEnemy() -> Entity:
 			closest = e
 	return closest
 
-func _on_health_component_health_update(new_hp) -> void:
+func _on_health_component_health_update(old_hp, new_hp) -> void:
+	if old_hp > new_hp:
+		animation_player.play("hurt")
 	MessageBus.player_health_changed.emit(new_hp)
 
 func _on_level_up_component_level_up(_new_level) -> void:

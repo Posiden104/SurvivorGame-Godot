@@ -1,20 +1,16 @@
 extends spawnable_base
 
 class_name spiral_bullet
-var hitLimit: int = 5
-var bulletLife: float = 5
-var dir = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position = Vector2(0,0)
-	$Timer.wait_time = bulletLife
+	$Timer.wait_time = weapon.projectile_bulletLife
 	$Timer.start()
-	mover.dir = dir
 
 func hitBody():
-	hitLimit -= 1
-	if hitLimit <= 0:
+	weapon.projectile_hitLimit -= 1
+	if weapon.projectile_hitLimit <= 0:
 		queue_free()
 
 func _on_timer_timeout():

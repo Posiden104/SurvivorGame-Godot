@@ -2,10 +2,21 @@ extends Node2D
 
 class_name weapon_base
 
+@export_group("Weapon")
 @export var cooldown: float
 @export var damage: float
 @export var weapon_name: Enums.WEAPON
 @export var damage_tracker: stat_tracker_component
+
+@export_group("Projectiles", "projectile")
+
+@export var projectile_hitLimit: int = 1
+@export var projectile_bulletLife: float = 1
+
+@export_group("Leveling Up")
+@export var lvl_up_data: Array[weapon_level_up]
+
+
 var isBought: bool = false
 var level: int
 var time_bought: float
@@ -16,8 +27,6 @@ var bonus_damage_percent: float = 1.0
 var cdr_percent: float = 1.0
 var projectile_count: float = 1.0
 
-@export_category("Leveling Up")
-@export var lvl_up_data: Array[weapon_level_up]
 
 
 func get_weapon_name() -> String:

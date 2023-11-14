@@ -14,16 +14,19 @@
 texture = ExtResource("2_70od3")
 
 [node name="ZombieFast" parent="EnemyContainer" index="0" instance=ExtResource("8_ljh26")]
-position = Vector2(534, 205)
+position = Vector2(365, 270)
 
-[node name="ZombieSlow" parent="EnemyContainer" index="1" instance=ExtResource("9_qcfdh")]
-position = Vector2(610, 211)
+[node name="ZombieFast2" parent="EnemyContainer" index="1" instance=ExtResource("8_ljh26")]
+position = Vector2(449, 231)
 
 [node name="ZombieFast3" parent="EnemyContainer" index="2" instance=ExtResource("8_ljh26")]
-position = Vector2(452, 246)
+position = Vector2(377, 170)
 
-[node name="ZombieFast2" parent="EnemyContainer" index="3" instance=ExtResource("8_ljh26")]
-position = Vector2(416, 183)
+[node name="ZombieSlow" parent="EnemyContainer" index="3" instance=ExtResource("9_qcfdh")]
+position = Vector2(709, 212)
+
+[node name="ZombieSlow2" parent="EnemyContainer" index="4" instance=ExtResource("9_qcfdh")]
+position = Vector2(804, 267)
 
 [node name="Scrap" parent="ScrapContainer" index="0" instance=ExtResource("4_613y7")]
 position = Vector2(205, 366)
