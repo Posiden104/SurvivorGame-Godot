@@ -8,7 +8,14 @@ enum WEAPON {
 	OVERWATCH,
 	TIME_BOMB,
 	SPIRAL_GUN,
-	SHOTGUN
+	SHOTGUN,
+	GRENADE,
+	PITCHFORK,
+	CHAINSAW,
+	BULLHORN,
+	GUTS,
+	ARMOR,
+	PLOW_TRUCK
 }
 
 func get_weapon_name(w: WEAPON) -> String:
