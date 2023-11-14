@@ -8,7 +8,7 @@ class_name weapon_card_script
 @onready var weapon_stats: Label = $"MarginContainer/VBoxContainer/Weapon Stats"
 
 func setup(w: Enums.WEAPON) -> void:
-	weapon = Game.Player.weapon_manager.get_weapon(Enums.get_weapon_name(w))
+	weapon = Game.Player.weapon_manager.get_weapon(w)
 	weapon_name.text = weapon.get_weapon_name()
 	weapon_level.text = str(weapon.level + 1)
 	var data = weapon.get_next_level_data()

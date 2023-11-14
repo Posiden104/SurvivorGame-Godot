@@ -4,12 +4,12 @@
 [ext_resource type="Material" uid="uid://cu4hmtogh44ry" path="res://shaders/entity_hit_shader_material.tres" id="2_q11pp"]
 [ext_resource type="Texture2D" uid="uid://caqhdmeluftny" path="res://images/Smile.png" id="2_yk4p3"]
 [ext_resource type="Script" path="res://scenes/entities/player/weapon_manager.gd" id="3_8rcxh"]
-[ext_resource type="PackedScene" uid="uid://ci1nrhhb0b7v7" path="res://scenes/weapons/gun/gun.tscn" id="4_xn6bd"]
-[ext_resource type="PackedScene" uid="uid://hcyw6bbk65df" path="res://scenes/weapons/overwatch/overwatch.tscn" id="5_8tv1o"]
-[ext_resource type="PackedScene" uid="uid://dgmswhsj2tfgb" path="res://scenes/weapons/sword/sword.tscn" id="6_mmfi5"]
-[ext_resource type="PackedScene" uid="uid://dv2fjgf5wc2rf" path="res://scenes/weapons/time bomb/time_bomb.tscn" id="7_ito0s"]
-[ext_resource type="PackedScene" uid="uid://c8jaanc3p2264" path="res://scenes/weapons/spiral gun/spiral gun.tscn" id="8_0y4xc"]
-[ext_resource type="PackedScene" uid="uid://qgvuyaany68t" path="res://scenes/weapons/shotgun/shotgun.tscn" id="9_tuk0j"]
+[ext_resource type="Resource" uid="uid://dkqqqtu0ybudp" path="res://scenes/weapons/gun/gun.tres" id="5_3y76j"]
+[ext_resource type="Resource" uid="uid://2vtqioqpyrld" path="res://scenes/weapons/overwatch/overwatch.tres" id="6_i4cte"]
+[ext_resource type="Resource" uid="uid://q7smbne8ajvg" path="res://scenes/weapons/shotgun/shotgun.tres" id="7_4476r"]
+[ext_resource type="Resource" uid="uid://dif7en46tkeun" path="res://scenes/weapons/spiral gun/spiral_gun.tres" id="8_36wly"]
+[ext_resource type="Resource" uid="uid://bis3klufkaa4e" path="res://scenes/weapons/sword/sword.tres" id="9_5l05b"]
+[ext_resource type="Resource" uid="uid://dh5awuiyoj1nk" path="res://scenes/weapons/time bomb/time_bomb.tres" id="10_cn68j"]
 [ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="11_40iqt"]
 [ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="12_rc4aw"]
 [ext_resource type="PackedScene" uid="uid://vuiqm0uji78e" path="res://scenes/components/level_up_component.tscn" id="13_njqxd"]
@@ -76,8 +76,9 @@ script = ExtResource("1_emybq")
 level_manager = NodePath("level_up_component")
 weapon_manager = NodePath("weapon_manager")
 sprite = NodePath("Sprite2D")
+speed = 100.0
 health = NodePath("HealthComponent")
-hurtbox = NodePath("weapon_manager/Sword/Sword2/HitboxComponent")
+hurtbox = NodePath("HurtboxComponent")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -95,23 +96,7 @@ metadata/_edit_lock_ = true
 
 [node name="weapon_manager" type="Node2D" parent="."]
 script = ExtResource("3_8rcxh")
-
-[node name="Gun" parent="weapon_manager" instance=ExtResource("4_xn6bd")]
-visible = false
-
-[node name="Overwatch" parent="weapon_manager" instance=ExtResource("5_8tv1o")]
-visible = false
-
-[node name="Sword" parent="weapon_manager" instance=ExtResource("6_mmfi5")]
-visible = false
-
-[node name="TimeBomb" parent="weapon_manager" instance=ExtResource("7_ito0s")]
-visible = false
-
-[node name="spiral gun" parent="weapon_manager" instance=ExtResource("8_0y4xc")]
-visible = false
-
-[node name="shotgun" parent="weapon_manager" instance=ExtResource("9_tuk0j")]
+weapon_resources = Array[Resource("res://scenes/weapons/weapon_resource.gd")]([ExtResource("5_3y76j"), ExtResource("6_i4cte"), ExtResource("7_4476r"), ExtResource("8_36wly"), ExtResource("9_5l05b"), ExtResource("10_cn68j")])
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
@@ -125,7 +110,6 @@ metadata/_edit_lock_ = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_40iqt")]
 entity_name = "Player"
-max_hp = 1000.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("12_rc4aw")]
 health_comp = NodePath("../HealthComponent")

@@ -71,3 +71,7 @@ enemy_type_to_spawn = 1
 min_spawn_time = 3.0
 max_spawn_time = 7.0
 autostart = true
+
+[node name="Player" parent="." index="6"]
+starting_weapon = null
+speed = null

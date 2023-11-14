@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://dif7en46tkeun"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_resource.gd" id="1_bqay0"]
+[ext_resource type="PackedScene" uid="uid://c8jaanc3p2264" path="res://scenes/weapons/spiral gun/spiral gun.tscn" id="2_jtuai"]
+
+[resource]
+script = ExtResource("1_bqay0")
+weapon = ExtResource("2_jtuai")
+weapon_name = 4

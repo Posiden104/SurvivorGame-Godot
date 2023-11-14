@@ -36,7 +36,7 @@ func _ready():
 	$Cooldown.wait_time = cooldown
 	if isBought:
 		buy()
-	maxed = lvl_up_data.size() < 1
+	maxed = lvl_up_data.is_empty()
 
 func activate():
 	print("dont use weapon_base activate")

@@ -8,9 +8,7 @@ class_name level_up_ui_class
 @onready var weapon_card_4: weapon_card_script = $"MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card4"
 
 func enable():
-	weapon_card.setup(Enums.WEAPON.GUN)
-	weapon_card_2.setup(Enums.WEAPON.SWORD)
-	weapon_card_3.setup(Enums.WEAPON.OVERWATCH)
+#	weapon_card.setudup(Enums.WEAPON.OVERWATCH)
 	
 	weapon_card.visible = true
 	weapon_card_2.visible = true

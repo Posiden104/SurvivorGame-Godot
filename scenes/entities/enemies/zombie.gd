@@ -1,7 +1,6 @@
 extends Entity
 
 @export var hitbox: hitbox_component
-@export var speed:float = 50
 
 var targetPos: Vector2
 var is_touching_player: bool = false
@@ -14,7 +13,7 @@ func _ready():
 	hitbox.body_entered.connect(_on_hitbox_component_body_entered)
 	hitbox.body_exited.connect(_on_hitbox_component_body_exited)
 	sprite.material.set("shader_parameter/active", false)
-
+	
 func _physics_process(_delta):
 	if Engine.time_scale == 0:
 		return

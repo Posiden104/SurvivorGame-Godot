@@ -13,3 +13,4 @@ signal add_scrap(scrap)
 
 # Weapon Signals
 signal global_bonus_changed(cdr: float, damage: float, proj: int)
+signal weapon_levelup(weapon: weapon_base)
