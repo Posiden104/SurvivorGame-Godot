@@ -6,7 +6,6 @@ class_name  player_script
 @export var weapon_manager: weapon_manager_class
 
 @export var starting_weapon: Enums.WEAPON
-@export var speed = 100.0
 var dir: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
@@ -16,7 +15,8 @@ func _ready() -> void:
 	MessageBus.player_xp_changed.emit(level_manager.xp, level_manager.xp_to_next_level)
 	MessageBus.player_ready.emit(self)
 	
-	weapon_manager.buy_weapon(Enums.WEAPON.keys()[starting_weapon])
+	sprite.material.set("shader_parameter/active", false)
+	weapon_manager.buy_weapon(starting_weapon)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESCAPE"):

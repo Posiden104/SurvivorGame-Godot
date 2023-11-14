@@ -12,7 +12,6 @@ cooldown = 20.0
 damage = 5.0
 weapon_name = 3
 damage_tracker = NodePath("stat_tracker_component")
-ignore_projectile_count = true
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true

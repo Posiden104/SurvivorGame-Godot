@@ -17,7 +17,6 @@ func activate():
 
 func position_bullets(proj: bullet):
 	proj.scale = proj.scale * 0.5
-	proj.bulletLife = 2
 	proj.mover.speed = 150
 	proj.dir = Game.Player.dir.rotated(deg_to_rad(randf_range(-spread_max_angle, spread_max_angle)))
 

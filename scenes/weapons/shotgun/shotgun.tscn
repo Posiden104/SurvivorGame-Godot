@@ -12,6 +12,7 @@ cooldown = 3.0
 damage = 0.6
 weapon_name = 5
 damage_tracker = NodePath("stat_tracker_component")
+projectile_bulletLife = 2.0
 
 [node name="projectile_spawn_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_3i1rx")]
 weapon = NodePath("..")

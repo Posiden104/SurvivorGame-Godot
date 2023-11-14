@@ -37,5 +37,3 @@ shape = SubResource("CircleShape2D_wnru2")
 hitbox = NodePath("../HitboxComponent")
 
 [connection signal="timeout" from="TimeBombTimer" to="." method="_on_time_bomb_timer_timeout"]
-[connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
-[connection signal="body_exited" from="HitboxComponent" to="." method="_on_hitbox_component_body_exited"]

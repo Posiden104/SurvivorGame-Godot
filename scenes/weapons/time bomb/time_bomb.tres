@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://dh5awuiyoj1nk"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_resource.gd" id="1_4krgk"]
+[ext_resource type="PackedScene" uid="uid://dv2fjgf5wc2rf" path="res://scenes/weapons/time bomb/time_bomb.tscn" id="2_8oker"]
+
+[resource]
+script = ExtResource("1_4krgk")
+weapon = ExtResource("2_8oker")
+weapon_name = 3

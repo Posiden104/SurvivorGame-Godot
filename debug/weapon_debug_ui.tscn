@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://0pouaoitorwj" path="res://scenes/ui/themes/main_theme.tres" id="3_5gqhh"]
 
 [node name="weapon_debug_ui" type="MarginContainer" node_paths=PackedStringArray("card_h_box", "globals_card_label")]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -110,6 +111,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Proj +1"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer/CDR Button" to="." method="_on_cdr_button_pressed"]
 [connection signal="pressed" from="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer/Dmg Button" to="." method="_on_dmg_button_pressed"]
 [connection signal="pressed" from="PanelContainer/ScrollContainer/MarginContainer/HBoxContainer/Card Container/Global Stats/MarginContainer/VBoxContainer/HBoxContainer/Proj Button" to="." method="_on_proj_button_pressed"]

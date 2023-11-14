@@ -14,13 +14,15 @@ func _ready() -> void:
 func startup(p: player_script):
 	player = p
 	weapon_manager = player.weapon_manager as weapon_manager_class
-	for wep in weapon_manager.weapons as Array[weapon_base]:
+	MessageBus.global_bonus_changed.connect(calc_globals)
+	calc_globals()
+
+func populate_list():
+	for wep in weapon_manager.weapon_resources as Array[Weapon]:
 		var card = weapon_card_debug.instantiate() as weapon_card_debug_script
-		card.weapon = wep
+		card.weapon_resource = wep
 		card.weapon_manager = weapon_manager
 		card_h_box.add_child(card)
-	calc_globals()
-	MessageBus.global_bonus_changed.connect(calc_globals)
 
 
 func calc_globals():
@@ -39,3 +41,10 @@ func _on_dmg_button_pressed() -> void:
 func _on_proj_button_pressed() -> void:
 	player.weapon_manager.bonus_projectile += 1.0
 	calc_globals()
+
+func _on_visibility_changed() -> void:
+	if visible:
+		populate_list()
+	else:
+		for c in get_tree().get_nodes_in_group("debug_cards"):
+			c.queue_free()

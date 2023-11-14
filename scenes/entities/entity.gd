@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Entity
 
 @export var sprite: Sprite2D
+@export var speed: float = 50
 
 @export_group("components")
 @export var health: health_component
