@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://3pkmh52gimed"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_resource.gd" id="1_fghba"]
+[ext_resource type="PackedScene" uid="uid://b56vqisdn0ygo" path="res://scenes/weapons/grenade/grenade.tscn" id="2_pepem"]
+
+[resource]
+script = ExtResource("1_fghba")
+weapon = ExtResource("2_pepem")
+weapon_name = 6

@@ -22,6 +22,7 @@ var level: int
 var time_bought: float
 var isActive: bool = false
 var maxed: bool = false
+var accuracy: float
 
 var bonus_damage_percent: float = 1.0
 var cdr_percent: float = 1.0
@@ -51,6 +52,7 @@ func buy():
 	isActive = true
 	visible = true
 	isBought = true
+	maxed = lvl_up_data.is_empty()	
 	activate()
 
 func get_next_level_data() -> weapon_level_up:
