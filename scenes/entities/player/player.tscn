@@ -71,7 +71,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "weapon_manager", "sprite", "health", "hurtbox", "animation_player") groups=["player"]]
-collision_mask = 27
+collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_emybq")
 level_manager = NodePath("level_up_component")
