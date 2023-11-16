@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5k61aho5e5sw"]
+
+[ext_resource type="Script" path="res://scenes/weapons/plow truck/plow_truck.gd" id="1_ik0u4"]
+[ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="2_cxinn"]
+[ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="3_bb42v"]
+[ext_resource type="PackedScene" uid="uid://dh4qnqkx48eig" path="res://scenes/weapon spawnables/plow_truck.tscn" id="4_hlcgu"]
+[ext_resource type="Texture2D" uid="uid://t3pnxq6orf3e" path="res://images/Double_Bar.png" id="5_5jhxq"]
+[ext_resource type="Shader" path="res://shaders/scrolling.gdshader" id="6_j242w"]
+[ext_resource type="Texture2D" uid="uid://c8srvtubbn4cv" path="res://images/Chevron_double.png" id="7_m42sm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okc7s"]
+shader = ExtResource("6_j242w")
+shader_parameter/speed = 30.0
+
+[node name="plow_truck" type="Node2D" node_paths=PackedStringArray("damage_tracker")]
+script = ExtResource("1_ik0u4")
+activeTime = 10.0
+cooldown = 60.0
+damage = 100.0
+weapon_name = 12
+damage_tracker = NodePath("stat_tracker_component")
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[node name="ActiveTimer" type="Timer" parent="."]
+
+[node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_cxinn")]
+weapon = NodePath("..")
+
+[node name="projectile_spawn_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_bb42v")]
+weapon = NodePath("..")
+projectile_scene = ExtResource("4_hlcgu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="DoubleBar" type="Sprite2D" parent="."]
+modulate = Color(0.904211, 0, 0.0728019, 1)
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_5jhxq")
+
+[node name="ChevronDouble" type="Sprite2D" parent="DoubleBar"]
+material = SubResource("ShaderMaterial_okc7s")
+texture = ExtResource("7_m42sm")
