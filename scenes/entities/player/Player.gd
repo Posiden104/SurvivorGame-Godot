@@ -8,6 +8,8 @@ class_name  player_script
 @export var starting_weapon: Enums.WEAPON
 var dir: Vector2 = Vector2.RIGHT
 
+var float_max: float =  2147483647.0
+
 func _ready() -> void:
 	Game.Player = self
 	
@@ -39,7 +41,7 @@ func gather_scrap():
 
 func getClosestEnemy() -> Entity:
 	var closest: Entity = null
-	var shortestDist: float = 2147483647.0
+	var shortestDist: float = float_max
 	var d: float
 	var enemies = get_tree().get_nodes_in_group("enemies") as Array[Entity]
 	for e in enemies:
@@ -48,6 +50,13 @@ func getClosestEnemy() -> Entity:
 			shortestDist = d
 			closest = e
 	return closest
+
+func get_closest_enemy_dir() -> Vector2:
+	var closest = getClosestEnemy()
+	var dir_2_enemy = null
+	if closest:
+		dir_2_enemy = (closest.get_position() - global_position).normalized()
+	return dir_2_enemy
 
 func _on_health_component_health_update(old_hp, new_hp) -> void:
 	if old_hp > new_hp:

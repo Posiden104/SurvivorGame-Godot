@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://b56vqisdn0ygo"]
+[gd_scene load_steps=5 format=3 uid="uid://b56vqisdn0ygo"]
 
 [ext_resource type="Script" path="res://scenes/weapons/grenade/grenade.gd" id="1_8w8rl"]
+[ext_resource type="PackedScene" uid="uid://drfpbicij544b" path="res://scenes/components/stat_tracker_component.tscn" id="2_e2a26"]
+[ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="3_qyofx"]
+[ext_resource type="PackedScene" uid="uid://d00g8whofsykl" path="res://scenes/weapon spawnables/grenade.tscn" id="4_o7od2"]
 
-[node name="grenade" type="Node2D"]
+[node name="grenade" type="Node2D" node_paths=PackedStringArray("spawner", "damage_tracker")]
 script = ExtResource("1_8w8rl")
+spawner = NodePath("projectile_spawn_component")
+cooldown = 5.0
+damage = 3.0
+weapon_name = 6
+damage_tracker = NodePath("stat_tracker_component")
+projectile_bulletLife = 3.0
+
+[node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_e2a26")]
+weapon = NodePath("..")
+
+[node name="projectile_spawn_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("3_qyofx")]
+weapon = NodePath("..")
+projectile_scene = ExtResource("4_o7od2")
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

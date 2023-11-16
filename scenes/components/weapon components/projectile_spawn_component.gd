@@ -17,9 +17,9 @@ func set_spawn_delay(time: float):
 
 func shoot():
 	to_spawn = int(weapon.get_projectile_count())
-	spawn()
+	_spawn()
 
-func spawn():
+func _spawn():
 	var projectile = projectile_scene.instantiate()
 	projectile.weapon = weapon
 	projectile.global_position = global_position
@@ -36,4 +36,4 @@ func spawn():
 		spawn_delay.start()
 
 func _on_spawn_delay_timeout() -> void:
-	spawn()
+	_spawn()
