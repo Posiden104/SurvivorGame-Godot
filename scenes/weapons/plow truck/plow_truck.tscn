@@ -8,21 +8,25 @@
 [ext_resource type="Shader" path="res://shaders/scrolling.gdshader" id="6_j242w"]
 [ext_resource type="Texture2D" uid="uid://c8srvtubbn4cv" path="res://images/Chevron_double.png" id="7_m42sm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_okc7s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmrjo"]
 shader = ExtResource("6_j242w")
-shader_parameter/speed = 30.0
+shader_parameter/speed = -0.55
+shader_parameter/color = Color(0.904211, 0, 0.0728019, 1)
 
-[node name="plow_truck" type="Node2D" node_paths=PackedStringArray("damage_tracker")]
+[node name="plow_truck" type="Node2D" node_paths=PackedStringArray("chevron", "damage_tracker")]
 script = ExtResource("1_ik0u4")
-activeTime = 10.0
-cooldown = 60.0
+chevron = NodePath("ChevronPath")
+activeTime = 3.0
+cooldown = 3.0
 damage = 100.0
 weapon_name = 12
 damage_tracker = NodePath("stat_tracker_component")
 
 [node name="Cooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="ActiveTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="stat_tracker_component" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_cxinn")]
 weapon = NodePath("..")
@@ -33,12 +37,24 @@ projectile_scene = ExtResource("4_hlcgu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="DoubleBar" type="Sprite2D" parent="."]
+[node name="ChevronPath" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.904211, 0, 0.0728019, 1)
-position = Vector2(0, -1)
-scale = Vector2(0.5, 0.5)
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("5_5jhxq")
+stretch_mode = 1
 
-[node name="ChevronDouble" type="Sprite2D" parent="DoubleBar"]
-material = SubResource("ShaderMaterial_okc7s")
+[node name="TextureRect" type="TextureRect" parent="ChevronPath"]
+material = SubResource("ShaderMaterial_nmrjo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("7_m42sm")
+stretch_mode = 1
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]

@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp7ckl280iie8"]
+[gd_scene load_steps=8 format=3 uid="uid://cp7ckl280iie8"]
 
 [ext_resource type="PackedScene" uid="uid://ogloqd2aef8e" path="res://scenes/levels/Base_Level.tscn" id="1_x027y"]
 [ext_resource type="Texture2D" uid="uid://jmmgalayjhp1" path="res://images/Background.jpg" id="2_70od3"]
 [ext_resource type="PackedScene" uid="uid://dhh7w6rc5mr6q" path="res://scenes/pickups/scrap.tscn" id="4_613y7"]
 [ext_resource type="PackedScene" uid="uid://cebwi4eryl6dt" path="res://scenes/pickups/magnet.tscn" id="5_o3t2n"]
 [ext_resource type="PackedScene" uid="uid://d2nh73ws0tria" path="res://scenes/spawners/spawner.tscn" id="6_3y0x1"]
-[ext_resource type="PackedScene" uid="uid://dh4qnqkx48eig" path="res://scenes/weapon spawnables/plow_truck.tscn" id="8_bn6cx"]
 [ext_resource type="PackedScene" uid="uid://0xx5vmilyslu" path="res://scenes/entities/enemies/zombie_fast.tscn" id="8_ljh26"]
 [ext_resource type="PackedScene" uid="uid://civf2v7v2gn7c" path="res://scenes/entities/enemies/zombie_slow.tscn" id="9_qcfdh"]
 
@@ -72,6 +71,3 @@ enemy_type_to_spawn = 1
 min_spawn_time = 3.0
 max_spawn_time = 7.0
 autostart = true
-
-[node name="plow_truck" parent="." index="7" instance=ExtResource("8_bn6cx")]
-position = Vector2(104, 333)

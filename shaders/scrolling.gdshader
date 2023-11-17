@@ -1,9 +1,8 @@
 shader_type canvas_item;
 
-uniform float speed = 10.0;
+uniform float speed;
+uniform vec4 color: source_color;
 
-void vertex() {
-	// VERTEX
-	// TIME
-	VERTEX += vec2(mod(TIME, 10.0) * speed, VERTEX.y);
+void fragment() {
+	COLOR = texture(TEXTURE, vec2(UV.x + TIME * speed, UV.y)) * color;
 }
