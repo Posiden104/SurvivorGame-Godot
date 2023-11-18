@@ -6,6 +6,7 @@ signal died
 signal health_update(old_hp: float, new_hp: float)
 
 @export var entity_name: String
+@export var invulnerable: bool = false
 
 @export var max_hp: float = 100:
 	set(value):
@@ -27,7 +28,8 @@ var is_damaged: bool = hp < max_hp
 var has_health_remaining: bool = hp > 0
 
 func damage(dmg: float):
-	hp -= dmg
+	if not invulnerable or dmg < 0:
+		hp -= dmg
 
 func heal(amt: float):
 	damage(-amt)

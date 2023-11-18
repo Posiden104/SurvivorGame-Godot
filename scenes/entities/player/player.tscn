@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://co4b3ayy6bk2f"]
+[gd_scene load_steps=21 format=3 uid="uid://co4b3ayy6bk2f"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_emybq"]
 [ext_resource type="Material" uid="uid://cu4hmtogh44ry" path="res://shaders/entity_hit_shader_material.tres" id="2_q11pp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://dh5awuiyoj1nk" path="res://scenes/weapons/time bomb/time_bomb.tres" id="10_cn68j"]
 [ext_resource type="PackedScene" uid="uid://buyewsh02820b" path="res://scenes/components/health_component.tscn" id="11_40iqt"]
 [ext_resource type="Resource" uid="uid://3pkmh52gimed" path="res://scenes/weapons/grenade/grenade.tres" id="11_sawml"]
+[ext_resource type="Resource" uid="uid://gikbhjw3oiaw" path="res://scenes/weapons/plow truck/plow_truck.tres" id="12_nnryi"]
 [ext_resource type="PackedScene" uid="uid://yv6igrqrui6c" path="res://scenes/components/hurtbox_component.tscn" id="12_rc4aw"]
 [ext_resource type="PackedScene" uid="uid://vuiqm0uji78e" path="res://scenes/components/level_up_component.tscn" id="13_njqxd"]
 
@@ -76,7 +77,7 @@ motion_mode = 1
 script = ExtResource("1_emybq")
 level_manager = NodePath("level_up_component")
 weapon_manager = NodePath("weapon_manager")
-starting_weapon = 6
+starting_weapon = 12
 sprite = NodePath("Sprite2D")
 speed = 100.0
 health = NodePath("HealthComponent")
@@ -98,7 +99,7 @@ metadata/_edit_lock_ = true
 
 [node name="weapon_manager" type="Node2D" parent="."]
 script = ExtResource("3_8rcxh")
-weapon_resources = Array[Resource("res://scenes/weapons/weapon_resource.gd")]([ExtResource("5_3y76j"), ExtResource("6_i4cte"), ExtResource("7_4476r"), ExtResource("8_36wly"), ExtResource("9_5l05b"), ExtResource("10_cn68j"), ExtResource("11_sawml")])
+weapon_resources = Array[Resource("res://scenes/weapons/weapon_resource.gd")]([ExtResource("5_3y76j"), ExtResource("6_i4cte"), ExtResource("7_4476r"), ExtResource("8_36wly"), ExtResource("9_5l05b"), ExtResource("10_cn68j"), ExtResource("11_sawml"), ExtResource("12_nnryi")])
 
 [node name="Pickup Range" type="Area2D" parent="." groups=["player_pickup"]]
 unique_name_in_owner = true
@@ -112,9 +113,11 @@ metadata/_edit_lock_ = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_40iqt")]
 entity_name = "Player"
+invulnerable = true
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("12_rc4aw")]
 health_comp = NodePath("../HealthComponent")
+invulnerable = true
 
 [node name="HurboxCollider" type="CollisionShape2D" parent="HurtboxComponent" groups=["player"]]
 visible = false
