@@ -113,9 +113,11 @@ metadata/_edit_lock_ = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_40iqt")]
 entity_name = "Player"
+invulnerable = true
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("12_rc4aw")]
 health_comp = NodePath("../HealthComponent")
+invulnerable = true
 
 [node name="HurboxCollider" type="CollisionShape2D" parent="HurtboxComponent" groups=["player"]]
 visible = false

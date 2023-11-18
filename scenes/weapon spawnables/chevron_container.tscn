@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkgk06applghf"]
+
+[ext_resource type="Script" path="res://scenes/weapon spawnables/chevron_container.gd" id="1_a33p7"]
+[ext_resource type="Texture2D" uid="uid://t3pnxq6orf3e" path="res://images/Double_Bar.png" id="1_x8kyg"]
+[ext_resource type="Shader" path="res://shaders/scrolling.gdshader" id="2_iflxq"]
+[ext_resource type="Texture2D" uid="uid://c8srvtubbn4cv" path="res://images/Chevron_double.png" id="3_3d34x"]
+[ext_resource type="PackedScene" uid="uid://3n88f055qc7j" path="res://scenes/components/weapon components/projectile_spawn_component.tscn" id="5_lb8dr"]
+[ext_resource type="PackedScene" uid="uid://dh4qnqkx48eig" path="res://scenes/weapon spawnables/plow_truck.tscn" id="6_pjqf7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0x6k"]
+shader = ExtResource("2_iflxq")
+shader_parameter/speed = -0.55
+shader_parameter/color = Color(0.904211, 0, 0.0728019, 1)
+
+[node name="ChevronContainer" type="Node2D" node_paths=PackedStringArray("spawner", "hitbox")]
+z_index = -1
+script = ExtResource("1_a33p7")
+spawner = NodePath("projectile_spawn_component")
+hitbox = NodePath("")
+
+[node name="Chevron" type="TextureRect" parent="."]
+modulate = Color(0.904211, 0, 0.0728019, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x8kyg")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Chevron"]
+material = SubResource("ShaderMaterial_c0x6k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3d34x")
+stretch_mode = 1
+
+[node name="Truck Spawn" type="Marker2D" parent="Chevron"]
+position = Vector2(0, 32)
+
+[node name="projectile_spawn_component" parent="." instance=ExtResource("5_lb8dr")]
+projectile_scene = ExtResource("6_pjqf7")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

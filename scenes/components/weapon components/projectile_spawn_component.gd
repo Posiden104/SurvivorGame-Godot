@@ -15,16 +15,17 @@ var callback: Callable
 func set_spawn_delay(time: float):
 	spawn_delay.wait_time = time
 
-func shoot():
+func shoot(has_hitbox: bool = true):
 	to_spawn = int(weapon.get_projectile_count())
-	_spawn()
+	_spawn(has_hitbox)
 
-func _spawn():
+func _spawn(has_hitbox: bool = true):
 	var projectile = projectile_scene.instantiate()
 	projectile.weapon = weapon
 	projectile.global_position = global_position
-	projectile.hitbox.damage = weapon.get_damage()
-	projectile.hitbox.damage_dealt.connect(weapon.damage_tracker.add)
+	if has_hitbox:
+		projectile.hitbox.damage = weapon.get_damage()
+		projectile.hitbox.damage_dealt.connect(weapon.damage_tracker.add)
 	if callback:
 		callback.call(projectile)
 	if connect_to_weapon:

@@ -1,26 +1,10 @@
-extends active_weapon_base
+extends weapon_base
 
-@export var chevron: TextureRect
-
-var length_units = 20
-var texture_size = 64
+@export var spawner: projectile_spawn_component
 
 func activate():
-	chevron.position.x = 0
-	chevron.size.x = texture_size * length_units
-#	chevron.rotation_degrees = 45
-	chevron.position.x -= texture_size * length_units / 2
-	chevron.visible = true
-	$ActiveTimer.start()
-
-func deactivate():
-	chevron.visible = false
+	_on_cooldown_timeout()
 	$Cooldown.start()
 
-
 func _on_cooldown_timeout() -> void:
-	activate()
-
-
-func _on_active_timer_timeout() -> void:
-	deactivate()
+	spawner.shoot(false)
