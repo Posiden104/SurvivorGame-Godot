@@ -1,9 +1,36 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://bis3klufkaa4e"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=8 format=3 uid="uid://bis3klufkaa4e"]
 
+[ext_resource type="Script" path="res://scenes/weapons/weapon_level_up.gd" id="1_2r37l"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon_resource.gd" id="1_76055"]
 [ext_resource type="PackedScene" uid="uid://dgmswhsj2tfgb" path="res://scenes/weapons/sword/sword.tscn" id="2_2wsw2"]
+
+[sub_resource type="Resource" id="Resource_854cc"]
+script = ExtResource("1_2r37l")
+text = "Swing a sword in a circle."
+attributes = ""
+values = ""
+
+[sub_resource type="Resource" id="Resource_cg380"]
+script = ExtResource("1_2r37l")
+text = "Swords + 1"
+attributes = "projectile_count"
+values = "1"
+
+[sub_resource type="Resource" id="Resource_ru1j4"]
+script = ExtResource("1_2r37l")
+text = "Damage + 2"
+attributes = "damage"
+values = "2"
+
+[sub_resource type="Resource" id="Resource_6nap0"]
+script = ExtResource("1_2r37l")
+text = "Swords + 1
+Damage + 1"
+attributes = "projectile_count,damage"
+values = "1,1"
 
 [resource]
 script = ExtResource("1_76055")
 weapon = ExtResource("2_2wsw2")
 weapon_name = 1
+level_up_data = Array[ExtResource("1_2r37l")]([SubResource("Resource_854cc"), SubResource("Resource_cg380"), SubResource("Resource_ru1j4"), SubResource("Resource_6nap0")])

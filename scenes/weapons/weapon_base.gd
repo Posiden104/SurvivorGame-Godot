@@ -13,9 +13,7 @@ class_name weapon_base
 @export var projectile_hitLimit: int = 1
 @export var projectile_bulletLife: float = 1
 
-@export_group("Leveling Up")
-@export var lvl_up_data: Array[weapon_level_up]
-
+var weapon: Weapon
 
 var isBought: bool = false
 var level: int
@@ -37,7 +35,7 @@ func _ready():
 	$Cooldown.wait_time = cooldown
 	if isBought:
 		buy()
-	maxed = lvl_up_data.is_empty()
+	maxed = weapon.level_up_data.is_empty()
 
 func activate():
 	print("dont use weapon_base activate")
@@ -52,15 +50,15 @@ func buy():
 	isActive = true
 	visible = true
 	isBought = true
-	maxed = lvl_up_data.is_empty()	
+	maxed = weapon.level_up_data.is_empty()	
 	activate()
 
 func get_next_level_data() -> weapon_level_up:
-	if lvl_up_data.size() <= level or lvl_up_data.is_empty():
+	if weapon.level_up_data.size() <= level or weapon.level_up_data.is_empty():
 		print("max level reached for %s" % get_weapon_name())
 		maxed = true
 		return null
-	return lvl_up_data[level]
+	return weapon.level_up_data[level]
 
 func level_up():
 	if level == 0: 
