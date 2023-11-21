@@ -2,10 +2,7 @@ extends Control
 
 class_name level_up_ui_class
 
-@onready var weapon_card: weapon_card_script = $"MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card"
-@onready var weapon_card_2: weapon_card_script = $"MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card2"
-@onready var weapon_card_3: weapon_card_script = $"MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card3"
-@onready var weapon_card_4: weapon_card_script = $"MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card4"
+@export var weapon_cards: Array[weapon_card_script]
 var weapon_manager: weapon_manager_class
 
 func _ready() -> void:
@@ -15,17 +12,14 @@ func setup() -> void:
 	weapon_manager = Game.Player.weapon_manager
 
 func enable():
-#	var temp_wep = weapon_manager.get_random_weapon()
-	var weps = weapon_manager.get_random_weapons(4)
-	weapon_card.setup(weps[0])
-	weapon_card_2.setup(weps[1])
-	weapon_card_3.setup(weps[2])
-	weapon_card_4.setup(weps[3])
-	
-#	weapon_card.visible = true
-#	weapon_card_2.visible = true
-#	weapon_card_3.visible = true
-#	weapon_card_4.visible = true
+	var weps = weapon_manager.get_random_weapons(weapon_cards.size())
+	for i in weapon_cards.size():
+		if i < weps.size():
+			weapon_cards[i].is_placeholder = false
+			weapon_cards[i].setup(weps[i])
+		else:
+			weapon_cards[i].is_placeholder = true
+			weapon_cards[i].setup_placeholder()
 	
 	visible = true
 

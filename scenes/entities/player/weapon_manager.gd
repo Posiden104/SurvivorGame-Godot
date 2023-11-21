@@ -35,6 +35,11 @@ func level_up_weapon(weapon_name: Enums.WEAPON):
 func get_random_weapons(number_of_weapons: int) -> Array[Weapon]:
 	var weps: Array[Weapon] = []
 	var all_weps = weapon_resources.duplicate()
+	
+# Remove maxed weapons
+	for w in weapon_resources:
+		if w.maxed:
+			all_weps.remove_at(all_weps.find(w))
 	for i in number_of_weapons:
 		if all_weps.is_empty():
 			break

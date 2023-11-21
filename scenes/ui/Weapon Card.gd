@@ -40,7 +40,7 @@ func setup(w: Weapon) -> void:
 func setup_placeholder():
 	weapon_name_label.text = ""
 	weapon_level.text = ""
-	weapon_stats.text = "You only have 3 choices. Sorry!"
+	weapon_stats.text = "This is not a choice. Sorry!"
 	button.disabled = true
 
 func _on_button_pressed() -> void:

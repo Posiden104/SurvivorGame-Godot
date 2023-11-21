@@ -25,7 +25,7 @@ values = "2"
 [sub_resource type="Resource" id="Resource_ym1tg"]
 script = ExtResource("1_e242m")
 text = "Damage + 10%"
-attributes = "bonus_damage"
+attributes = "bonus_damage_percent"
 values = "0.1"
 
 [resource]
