@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://0pouaoitorwj" path="res://scenes/ui/themes/main_theme.tres" id="1_wuyn1"]
 [ext_resource type="PackedScene" uid="uid://dxpyprvmfbr7g" path="res://scenes/ui/weapon_card.tscn" id="2_dqg1s"]
 
-[node name="level_up_ui" type="Control"]
+[node name="level_up_ui" type="Control" node_paths=PackedStringArray("weapon_cards")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4ij08")
+weapon_cards = [NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card"), NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card2"), NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card3"), NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card4")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -72,21 +73,20 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
 
-[node name="Weapon Card2" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer" instance=ExtResource("2_dqg1s")]
+[node name="Weapon Card" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer" instance=ExtResource("2_dqg1s")]
 layout_mode = 2
 
-[node name="Weapon Card" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer" instance=ExtResource("2_dqg1s")]
+[node name="Weapon Card2" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer" instance=ExtResource("2_dqg1s")]
 layout_mode = 2
 
 [node name="Weapon Card3" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer" instance=ExtResource("2_dqg1s")]
 layout_mode = 2
 
 [node name="Weapon Card4" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer" instance=ExtResource("2_dqg1s")]
-visible = false
 layout_mode = 2
+is_placeholder = true
 
-[node name="Continue" type="Button" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-text = "Continue"
-
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="bought" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card" to="." method="_on_weapon_card_bought"]
+[connection signal="bought" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card2" to="." method="_on_weapon_card_bought"]
+[connection signal="bought" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card3" to="." method="_on_weapon_card_bought"]
+[connection signal="bought" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/ButtonContainer/Weapon Card4" to="." method="_on_weapon_card_bought"]

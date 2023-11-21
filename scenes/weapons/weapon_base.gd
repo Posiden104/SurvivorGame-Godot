@@ -13,15 +13,12 @@ class_name weapon_base
 @export var projectile_hitLimit: int = 1
 @export var projectile_bulletLife: float = 1
 
-@export_group("Leveling Up")
-@export var lvl_up_data: Array[weapon_level_up]
-
+var weapon: Weapon
 
 var isBought: bool = false
 var level: int
 var time_bought: float
 var isActive: bool = false
-var maxed: bool = false
 var accuracy: float
 
 var bonus_damage_percent: float = 1.0
@@ -37,7 +34,7 @@ func _ready():
 	$Cooldown.wait_time = cooldown
 	if isBought:
 		buy()
-	maxed = lvl_up_data.is_empty()
+	weapon.maxed = weapon.level_up_data.is_empty()
 
 func activate():
 	print("dont use weapon_base activate")
@@ -52,19 +49,21 @@ func buy():
 	isActive = true
 	visible = true
 	isBought = true
-	maxed = lvl_up_data.is_empty()	
+	weapon.maxed = weapon.level_up_data.is_empty()
 	activate()
 
 func get_next_level_data() -> weapon_level_up:
-	if lvl_up_data.size() <= level or lvl_up_data.is_empty():
+	if weapon.level_up_data.size() <= level or weapon.level_up_data.is_empty():
 		print("max level reached for %s" % get_weapon_name())
-		maxed = true
+		weapon.maxed = true
 		return null
-	return lvl_up_data[level]
+	return weapon.level_up_data[level]
 
 func level_up():
 	if level == 0: 
 		buy()
+		return
+	if weapon.maxed:
 		return
 	var data = get_next_level_data()
 	if data == null: return
@@ -75,6 +74,8 @@ func level_up():
 		var new_val = get(attrs[i]) + float(values[i])
 		print("setting %s to %f" % [attrs[i], new_val])
 		set(attrs[i], new_val)
+	if level >= weapon.level_up_data.size():
+		weapon.maxed = true
 
 func get_damage():
 	return damage * Game.Player.weapon_manager.bonus_damage_percent * bonus_damage_percent

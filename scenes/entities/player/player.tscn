@@ -77,7 +77,6 @@ motion_mode = 1
 script = ExtResource("1_emybq")
 level_manager = NodePath("level_up_component")
 weapon_manager = NodePath("weapon_manager")
-starting_weapon = 12
 sprite = NodePath("Sprite2D")
 speed = 100.0
 health = NodePath("HealthComponent")

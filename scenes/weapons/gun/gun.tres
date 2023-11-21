@@ -1,9 +1,35 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://dkqqqtu0ybudp"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=8 format=3 uid="uid://dkqqqtu0ybudp"]
 
 [ext_resource type="Script" path="res://scenes/weapons/weapon_resource.gd" id="1_0vrjt"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon_level_up.gd" id="1_e242m"]
 [ext_resource type="PackedScene" uid="uid://ci1nrhhb0b7v7" path="res://scenes/weapons/gun/gun.tscn" id="2_2ajxb"]
+
+[sub_resource type="Resource" id="Resource_rvc6s"]
+script = ExtResource("1_e242m")
+text = "Shoots bullets in a straight line."
+attributes = ""
+values = ""
+
+[sub_resource type="Resource" id="Resource_qf51f"]
+script = ExtResource("1_e242m")
+text = "Projectile + 1"
+attributes = "projectile_count"
+values = "1"
+
+[sub_resource type="Resource" id="Resource_bfe12"]
+script = ExtResource("1_e242m")
+text = "Damage  + 2"
+attributes = "damage"
+values = "2"
+
+[sub_resource type="Resource" id="Resource_ym1tg"]
+script = ExtResource("1_e242m")
+text = "Damage + 10%"
+attributes = "bonus_damage_percent"
+values = "0.1"
 
 [resource]
 script = ExtResource("1_0vrjt")
 weapon = ExtResource("2_2ajxb")
 weapon_name = 0
+level_up_data = Array[ExtResource("1_e242m")]([SubResource("Resource_rvc6s"), SubResource("Resource_qf51f"), SubResource("Resource_bfe12"), SubResource("Resource_ym1tg")])
