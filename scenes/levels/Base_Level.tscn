@@ -39,3 +39,5 @@ z_index = -1
 
 [node name="Player" parent="." instance=ExtResource("4_eryxj")]
 position = Vector2(574, 325)
+
+[node name="CameraAttachedSpawnerContainer" type="Marker2D" parent="Player"]

@@ -10,14 +10,18 @@ var fast_zombie_scene: PackedScene = preload("res://scenes/entities/enemies/zomb
 @export var max_spawn_time: float = 5.0
 @export var autostart: bool = false
 
+var scenes: Array[PackedScene]
+
 var spawnner_scene: PackedScene
 
 func _ready():
-	match enemy_type_to_spawn:
-		enemyType.slow_zombie:
-			spawnner_scene = slow_zombie_scene
-		enemyType.fast_zombie:
-			spawnner_scene = fast_zombie_scene
+	scenes.push_back(slow_zombie_scene)
+	scenes.push_back(fast_zombie_scene)
+#	match enemy_type_to_spawn:
+#		enemyType.slow_zombie:
+#			spawnner_scene = slow_zombie_scene
+#		enemyType.fast_zombie:
+#			spawnner_scene = fast_zombie_scene
 	if autostart:
 		startTimer()
 
@@ -26,7 +30,7 @@ func startTimer():
 	$SpawnTimer.start()
 
 func _on_spawn_timer_timeout():
-	var e = spawnner_scene.instantiate()
+	var e = scenes.pick_random().instantiate()
 	e.global_position = global_position
 	MessageBus.spawn_enemy.emit(e)
 	startTimer()

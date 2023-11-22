@@ -28,7 +28,7 @@ func calc_stats():
 	var is_active: String = "true" if weapon.isActive else "false"
 	var txt: String = stats_format % [weapon.damage, weapon.cooldown, is_active, weapon.projectile_count, weapon.cdr_percent, weapon.bonus_damage_percent]
 	weapon_stats.text = txt
-	if weapon.maxed && weapon.isBought:
+	if weapon_resource.maxed && weapon.isBought:
 		action_btn.disabled = true
 		action_btn.text = "Max Level"
 
