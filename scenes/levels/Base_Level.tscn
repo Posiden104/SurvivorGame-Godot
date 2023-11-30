@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ogloqd2aef8e"]
+[gd_scene load_steps=9 format=3 uid="uid://ogloqd2aef8e"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_7iis2"]
 [ext_resource type="Script" path="res://scenes/levels/EnemyContainer.gd" id="2_y88t8"]
 [ext_resource type="Script" path="res://scenes/levels/ProjectileContainer.gd" id="3_8yje1"]
 [ext_resource type="PackedScene" uid="uid://co4b3ayy6bk2f" path="res://scenes/entities/player/player.tscn" id="4_eryxj"]
 [ext_resource type="Script" path="res://scenes/levels/ScrapContainer.gd" id="4_m3w4x"]
+[ext_resource type="Script" path="res://scenes/levels/SpawnerContainer.gd" id="5_4tkya"]
+[ext_resource type="PackedScene" uid="uid://0xx5vmilyslu" path="res://scenes/entities/enemies/zombie_fast.tscn" id="6_wjfjt"]
+[ext_resource type="PackedScene" uid="uid://civf2v7v2gn7c" path="res://scenes/entities/enemies/zombie_slow.tscn" id="7_a5r3l"]
 
 [node name="Game_Base" type="Node2D"]
 script = ExtResource("1_7iis2")
@@ -36,8 +39,16 @@ script = ExtResource("4_m3w4x")
 z_index = -1
 
 [node name="SpawnerContainer" type="Marker2D" parent="."]
+script = ExtResource("5_4tkya")
+enemies = Array[PackedScene]([ExtResource("6_wjfjt"), ExtResource("7_a5r3l")])
+
+[node name="SpawnTimer" type="Timer" parent="SpawnerContainer"]
+unique_name_in_owner = true
+one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("4_eryxj")]
 position = Vector2(574, 325)
 
 [node name="CameraAttachedSpawnerContainer" type="Marker2D" parent="Player"]
+
+[connection signal="timeout" from="SpawnerContainer/SpawnTimer" to="SpawnerContainer" method="_on_spawn_timer_timeout"]

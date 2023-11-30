@@ -25,9 +25,6 @@ func _process(_delta: float) -> void:
 		health.died.emit()
 	if Input.is_action_just_pressed("CHEAT_level_up"):
 		level_manager.level_up()
-#		weapon_manager.level_up_weapon(Enums.WEAPON.keys()[starting_weapon])
-	if Input.is_action_just_pressed("CHEAT_add_proj"):
-		weapon_manager.get_weapon(Enums.WEAPON.keys()[starting_weapon]).projectile_count += 1
 
 func _physics_process(_delta):
 	set_velocity(Input.get_vector("Left", "Right", "Up", "Down").normalized() * speed)
